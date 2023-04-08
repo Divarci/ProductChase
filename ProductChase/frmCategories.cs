@@ -54,7 +54,7 @@ namespace ProductChase
 
             if (temp > 0)
             {
-                MessageBox.Show("This category has already been ADDED. Please try to add different category", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("This category has already been ADDED. Please try to add different category", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -71,6 +71,7 @@ namespace ProductChase
         private void btnList_Click(object sender, EventArgs e)
         {
             listIt();
+            Clean();
         }
 
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -103,6 +104,11 @@ namespace ProductChase
             Clean();
             listIt();
 
+        }
+
+        private void frmCategories_Load(object sender, EventArgs e)
+        {
+            listIt();
         }
     }
 }

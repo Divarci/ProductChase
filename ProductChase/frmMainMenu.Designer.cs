@@ -33,23 +33,23 @@
             this.btnProducts = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnClients = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCategories = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnEmployee = new System.Windows.Forms.Button();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnTill = new System.Windows.Forms.Button();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnStatistics = new System.Windows.Forms.Button();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnPassUsers = new System.Windows.Forms.Button();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btnMovement = new System.Windows.Forms.Button();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.button9 = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -72,23 +72,23 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox10);
-            this.panel1.Controls.Add(this.button9);
+            this.panel1.Controls.Add(this.btnExit);
             this.panel1.Controls.Add(this.pictureBox9);
-            this.panel1.Controls.Add(this.button8);
+            this.panel1.Controls.Add(this.btnSettings);
             this.panel1.Controls.Add(this.pictureBox8);
-            this.panel1.Controls.Add(this.button7);
+            this.panel1.Controls.Add(this.btnMovement);
             this.panel1.Controls.Add(this.pictureBox7);
-            this.panel1.Controls.Add(this.button6);
+            this.panel1.Controls.Add(this.btnPassUsers);
             this.panel1.Controls.Add(this.pictureBox6);
-            this.panel1.Controls.Add(this.button5);
+            this.panel1.Controls.Add(this.btnStatistics);
             this.panel1.Controls.Add(this.pictureBox5);
-            this.panel1.Controls.Add(this.button4);
+            this.panel1.Controls.Add(this.btnTill);
             this.panel1.Controls.Add(this.pictureBox4);
-            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.btnEmployee);
             this.panel1.Controls.Add(this.pictureBox3);
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.btnCategories);
             this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnClients);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.btnProducts);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -129,17 +129,17 @@
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             // 
-            // button1
+            // btnClients
             // 
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(64, 138);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(199, 50);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "CLIENTS";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnClients.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnClients.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClients.ForeColor = System.Drawing.Color.White;
+            this.btnClients.Location = new System.Drawing.Point(64, 138);
+            this.btnClients.Name = "btnClients";
+            this.btnClients.Size = new System.Drawing.Size(199, 50);
+            this.btnClients.TabIndex = 2;
+            this.btnClients.Text = "CLIENTS";
+            this.btnClients.UseVisualStyleBackColor = true;
             // 
             // pictureBox3
             // 
@@ -151,17 +151,18 @@
             this.pictureBox3.TabIndex = 5;
             this.pictureBox3.TabStop = false;
             // 
-            // button2
+            // btnCategories
             // 
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(64, 194);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(199, 50);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "CATEGORIES";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnCategories.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnCategories.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCategories.ForeColor = System.Drawing.Color.White;
+            this.btnCategories.Location = new System.Drawing.Point(64, 194);
+            this.btnCategories.Name = "btnCategories";
+            this.btnCategories.Size = new System.Drawing.Size(199, 50);
+            this.btnCategories.TabIndex = 4;
+            this.btnCategories.Text = "CATEGORIES";
+            this.btnCategories.UseVisualStyleBackColor = true;
+            this.btnCategories.Click += new System.EventHandler(this.btnCategories_Click);
             // 
             // pictureBox4
             // 
@@ -173,17 +174,17 @@
             this.pictureBox4.TabIndex = 7;
             this.pictureBox4.TabStop = false;
             // 
-            // button3
+            // btnEmployee
             // 
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(64, 250);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(199, 50);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "EMPLOYEES";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnEmployee.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmployee.ForeColor = System.Drawing.Color.White;
+            this.btnEmployee.Location = new System.Drawing.Point(64, 250);
+            this.btnEmployee.Name = "btnEmployee";
+            this.btnEmployee.Size = new System.Drawing.Size(199, 50);
+            this.btnEmployee.TabIndex = 6;
+            this.btnEmployee.Text = "EMPLOYEES";
+            this.btnEmployee.UseVisualStyleBackColor = true;
             // 
             // pictureBox5
             // 
@@ -195,17 +196,17 @@
             this.pictureBox5.TabIndex = 9;
             this.pictureBox5.TabStop = false;
             // 
-            // button4
+            // btnTill
             // 
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(64, 306);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(199, 50);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "TILL";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnTill.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnTill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTill.ForeColor = System.Drawing.Color.White;
+            this.btnTill.Location = new System.Drawing.Point(64, 306);
+            this.btnTill.Name = "btnTill";
+            this.btnTill.Size = new System.Drawing.Size(199, 50);
+            this.btnTill.TabIndex = 8;
+            this.btnTill.Text = "TILL";
+            this.btnTill.UseVisualStyleBackColor = true;
             // 
             // pictureBox6
             // 
@@ -217,17 +218,17 @@
             this.pictureBox6.TabIndex = 11;
             this.pictureBox6.TabStop = false;
             // 
-            // button5
+            // btnStatistics
             // 
-            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(64, 362);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(199, 50);
-            this.button5.TabIndex = 10;
-            this.button5.Text = "STATISTICS";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnStatistics.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnStatistics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStatistics.ForeColor = System.Drawing.Color.White;
+            this.btnStatistics.Location = new System.Drawing.Point(64, 362);
+            this.btnStatistics.Name = "btnStatistics";
+            this.btnStatistics.Size = new System.Drawing.Size(199, 50);
+            this.btnStatistics.TabIndex = 10;
+            this.btnStatistics.Text = "STATISTICS";
+            this.btnStatistics.UseVisualStyleBackColor = true;
             // 
             // pictureBox7
             // 
@@ -239,17 +240,17 @@
             this.pictureBox7.TabIndex = 13;
             this.pictureBox7.TabStop = false;
             // 
-            // button6
+            // btnPassUsers
             // 
-            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(64, 418);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(199, 50);
-            this.button6.TabIndex = 12;
-            this.button6.Text = "PASSWORDS AND USERS";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnPassUsers.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnPassUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPassUsers.ForeColor = System.Drawing.Color.White;
+            this.btnPassUsers.Location = new System.Drawing.Point(64, 418);
+            this.btnPassUsers.Name = "btnPassUsers";
+            this.btnPassUsers.Size = new System.Drawing.Size(199, 50);
+            this.btnPassUsers.TabIndex = 12;
+            this.btnPassUsers.Text = "PASSWORDS AND USERS";
+            this.btnPassUsers.UseVisualStyleBackColor = true;
             // 
             // pictureBox8
             // 
@@ -261,17 +262,17 @@
             this.pictureBox8.TabIndex = 15;
             this.pictureBox8.TabStop = false;
             // 
-            // button7
+            // btnMovement
             // 
-            this.button7.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(64, 474);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(199, 50);
-            this.button7.TabIndex = 14;
-            this.button7.Text = "MOVEMENTS";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnMovement.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnMovement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMovement.ForeColor = System.Drawing.Color.White;
+            this.btnMovement.Location = new System.Drawing.Point(64, 474);
+            this.btnMovement.Name = "btnMovement";
+            this.btnMovement.Size = new System.Drawing.Size(199, 50);
+            this.btnMovement.TabIndex = 14;
+            this.btnMovement.Text = "MOVEMENTS";
+            this.btnMovement.UseVisualStyleBackColor = true;
             // 
             // pictureBox9
             // 
@@ -283,17 +284,17 @@
             this.pictureBox9.TabIndex = 17;
             this.pictureBox9.TabStop = false;
             // 
-            // button8
+            // btnSettings
             // 
-            this.button8.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.ForeColor = System.Drawing.Color.White;
-            this.button8.Location = new System.Drawing.Point(64, 530);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(199, 50);
-            this.button8.TabIndex = 16;
-            this.button8.Text = "SETTINGS";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnSettings.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettings.ForeColor = System.Drawing.Color.White;
+            this.btnSettings.Location = new System.Drawing.Point(64, 530);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(199, 50);
+            this.btnSettings.TabIndex = 16;
+            this.btnSettings.Text = "SETTINGS";
+            this.btnSettings.UseVisualStyleBackColor = true;
             // 
             // pictureBox10
             // 
@@ -305,17 +306,17 @@
             this.pictureBox10.TabIndex = 19;
             this.pictureBox10.TabStop = false;
             // 
-            // button9
+            // btnExit
             // 
-            this.button9.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.ForeColor = System.Drawing.Color.White;
-            this.button9.Location = new System.Drawing.Point(64, 586);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(199, 50);
-            this.button9.TabIndex = 18;
-            this.button9.Text = "EXIT";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnExit.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.Location = new System.Drawing.Point(64, 586);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(199, 50);
+            this.btnExit.TabIndex = 18;
+            this.btnExit.Text = "EXIT";
+            this.btnExit.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -356,7 +357,6 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Berlin Sans FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
@@ -387,23 +387,23 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox10;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.PictureBox pictureBox8;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btnMovement;
         private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnPassUsers;
         private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnStatistics;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnTill;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnEmployee;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCategories;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnClients;
         private System.Windows.Forms.Panel panel2;
     }
 }

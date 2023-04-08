@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectionToSql.cs" />
+    <Compile Include="frmCategories.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCategories.Designer.cs">
+      <DependentUpon>frmCategories.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +61,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmCategories.resx">
+      <DependentUpon>frmCategories.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMainMenu.resx">
       <DependentUpon>frmMainMenu.cs</DependentUpon>
     </EmbeddedResource>

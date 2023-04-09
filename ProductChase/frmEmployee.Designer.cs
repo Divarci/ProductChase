@@ -71,7 +71,7 @@
             this.btnList.Name = "btnList";
             this.btnList.Size = new System.Drawing.Size(137, 50);
             this.btnList.TabIndex = 30;
-            this.btnList.Text = "LIST";
+            this.btnList.Text = "LIST AND CLEAR";
             this.btnList.UseVisualStyleBackColor = true;
             this.btnList.Click += new System.EventHandler(this.btnList_Click);
             // 
@@ -237,7 +237,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Font = new System.Drawing.Font("Berlin Sans FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "frmEmployee";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

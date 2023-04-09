@@ -35,36 +35,43 @@ namespace ProductChase
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            List<string> categoryNameList = new List<string>();
-            SqlCommand cmd1 = new SqlCommand("Select CategoryName from TBLCATEGORY", conn.conn());
-            SqlDataReader dr = cmd1.ExecuteReader();
-            while (dr.Read())
+            if (txtCatergory.Text.Trim().Length == 0)
             {
-                categoryNameList.Add(dr[0].ToString());
-            }
-            conn.conn().Close();
-            int temp = 0;
-            for (int i = 0; i < categoryNameList.Count; i++)
-            {
-                if (categoryNameList[i] == txtCatergory.Text)
-                {
-                    temp++;
-                }
-            }
-
-            if (temp > 0)
-            {
-                MessageBox.Show("This category has already been ADDED. Please try to add different category", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please enter a Valid Category Name", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                SqlCommand cmd2 = new SqlCommand("insert into TBLCATEGORY (CATEGORYNAME) values (@p1)", conn.conn());
-                cmd2.Parameters.AddWithValue("@p1", txtCatergory.Text);
-                cmd2.ExecuteNonQuery();
+                List<string> categoryNameList = new List<string>();
+                SqlCommand cmd1 = new SqlCommand("Select CategoryName from TBLCATEGORY", conn.conn());
+                SqlDataReader dr = cmd1.ExecuteReader();
+                while (dr.Read())
+                {
+                    categoryNameList.Add(dr[0].ToString());
+                }
                 conn.conn().Close();
-                MessageBox.Show("Category has been ADDED", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Clean();
-                listIt();
+                int temp = 0;
+                for (int i = 0; i < categoryNameList.Count; i++)
+                {
+                    if (categoryNameList[i] == txtCatergory.Text)
+                    {
+                        temp++;
+                    }
+                }
+
+                if (temp > 0)
+                {
+                    MessageBox.Show("This category has already been ADDED. Please try to add different category", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    SqlCommand cmd2 = new SqlCommand("insert into TBLCATEGORY (CATEGORYNAME) values (@p1)", conn.conn());
+                    cmd2.Parameters.AddWithValue("@p1", txtCatergory.Text);
+                    cmd2.ExecuteNonQuery();
+                    conn.conn().Close();
+                    MessageBox.Show("Category has been ADDED", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Clean();
+                    listIt();
+                }
             }
         }
 
@@ -82,28 +89,51 @@ namespace ProductChase
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            SqlCommand cmd = new SqlCommand("delete from TBLCATEGORY where CategoryId=@p1", conn.conn());
-            cmd.Parameters.AddWithValue("@p1", txtId.Text);
-            cmd.ExecuteNonQuery();
-            conn.conn().Close();
+            if (txtId.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Please enter a Valid Category Id by selection from table", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("Are you sure to DELETE category Id: " + txtId.Text, "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
-            MessageBox.Show("Category has been DELETED", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Clean();
-            listIt();
+                if (result == DialogResult.Yes)
+                {
+                    SqlCommand cmd = new SqlCommand("delete from TBLCATEGORY where CategoryId=@p1", conn.conn());
+                    cmd.Parameters.AddWithValue("@p1", txtId.Text);
+                    cmd.ExecuteNonQuery();
+                    conn.conn().Close();
+
+                    MessageBox.Show("Category Id: " + txtId.Text + " has been DELETED", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Clean();
+                    listIt();
+                }
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            SqlCommand cmd = new SqlCommand("Update TBLCATEGORY set CategoryName=@p1 where categoryid=@p2",conn.conn());
-            cmd.Parameters.AddWithValue("@p1", txtCatergory.Text);
-            cmd.Parameters.AddWithValue("@p2", txtId.Text);
-            cmd.ExecuteNonQuery();
-            conn.conn().Close();
+            if (txtCatergory.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Please enter a Valid Category Name", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("Are you sure to UPDATE category Id: " + txtId.Text, "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
-            MessageBox.Show("Category has been UPDATED", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Clean();
-            listIt();
+                if (result == DialogResult.Yes)
+                {
+                    SqlCommand cmd = new SqlCommand("Update TBLCATEGORY set CategoryName=@p1 where categoryid=@p2", conn.conn());
+                    cmd.Parameters.AddWithValue("@p1", txtCatergory.Text);
+                    cmd.Parameters.AddWithValue("@p2", txtId.Text);
+                    cmd.ExecuteNonQuery();
+                    conn.conn().Close();
 
+                    MessageBox.Show("Category Id: " + txtId.Text + " has been UPDATED", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Clean();
+                    listIt();
+                }
+            }
         }
 
         private void frmCategories_Load(object sender, EventArgs e)

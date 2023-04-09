@@ -210,7 +210,7 @@
             this.btnList.Name = "btnList";
             this.btnList.Size = new System.Drawing.Size(137, 50);
             this.btnList.TabIndex = 16;
-            this.btnList.Text = "LIST";
+            this.btnList.Text = "LIST AND CLEAR";
             this.btnList.UseVisualStyleBackColor = true;
             this.btnList.Click += new System.EventHandler(this.btnList_Click);
             // 

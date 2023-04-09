@@ -131,6 +131,7 @@
             // btnExit
             // 
             this.btnExit.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.ForeColor = System.Drawing.Color.White;
             this.btnExit.Location = new System.Drawing.Point(64, 586);
@@ -153,6 +154,7 @@
             // btnSettings
             // 
             this.btnSettings.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSettings.ForeColor = System.Drawing.Color.White;
             this.btnSettings.Location = new System.Drawing.Point(64, 530);
@@ -175,6 +177,7 @@
             // btnMovement
             // 
             this.btnMovement.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnMovement.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
             this.btnMovement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMovement.ForeColor = System.Drawing.Color.White;
             this.btnMovement.Location = new System.Drawing.Point(64, 474);
@@ -183,6 +186,7 @@
             this.btnMovement.TabIndex = 14;
             this.btnMovement.Text = "MOVEMENTS";
             this.btnMovement.UseVisualStyleBackColor = true;
+            this.btnMovement.Click += new System.EventHandler(this.btnMovement_Click);
             // 
             // pictureBox7
             // 
@@ -197,6 +201,7 @@
             // btnPassUsers
             // 
             this.btnPassUsers.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnPassUsers.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
             this.btnPassUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPassUsers.ForeColor = System.Drawing.Color.White;
             this.btnPassUsers.Location = new System.Drawing.Point(64, 418);
@@ -219,6 +224,7 @@
             // btnStatistics
             // 
             this.btnStatistics.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnStatistics.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
             this.btnStatistics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStatistics.ForeColor = System.Drawing.Color.White;
             this.btnStatistics.Location = new System.Drawing.Point(64, 362);
@@ -241,6 +247,7 @@
             // btnTill
             // 
             this.btnTill.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnTill.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
             this.btnTill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTill.ForeColor = System.Drawing.Color.White;
             this.btnTill.Location = new System.Drawing.Point(64, 306);
@@ -263,6 +270,7 @@
             // btnEmployee
             // 
             this.btnEmployee.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnEmployee.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
             this.btnEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEmployee.ForeColor = System.Drawing.Color.White;
             this.btnEmployee.Location = new System.Drawing.Point(64, 250);
@@ -286,6 +294,7 @@
             // btnCategories
             // 
             this.btnCategories.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnCategories.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
             this.btnCategories.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCategories.ForeColor = System.Drawing.Color.White;
             this.btnCategories.Location = new System.Drawing.Point(64, 194);
@@ -309,6 +318,7 @@
             // btnClients
             // 
             this.btnClients.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnClients.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
             this.btnClients.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClients.ForeColor = System.Drawing.Color.White;
             this.btnClients.Location = new System.Drawing.Point(64, 138);
@@ -332,6 +342,7 @@
             // btnProducts
             // 
             this.btnProducts.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnProducts.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
             this.btnProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProducts.ForeColor = System.Drawing.Color.White;
             this.btnProducts.Location = new System.Drawing.Point(64, 82);

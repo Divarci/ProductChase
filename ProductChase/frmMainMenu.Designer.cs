@@ -36,14 +36,11 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.btnSettings = new System.Windows.Forms.Button();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.btnMovement = new System.Windows.Forms.Button();
+            this.btnTill = new System.Windows.Forms.Button();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.btnPassUsers = new System.Windows.Forms.Button();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.btnStatistics = new System.Windows.Forms.Button();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.btnTill = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.btnEmployee = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -53,17 +50,17 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnProducts = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -75,14 +72,12 @@
             this.panel1.Controls.Add(this.btnExit);
             this.panel1.Controls.Add(this.pictureBox9);
             this.panel1.Controls.Add(this.btnSettings);
-            this.panel1.Controls.Add(this.pictureBox8);
-            this.panel1.Controls.Add(this.btnMovement);
+            this.panel1.Controls.Add(this.btnTill);
             this.panel1.Controls.Add(this.pictureBox7);
             this.panel1.Controls.Add(this.btnPassUsers);
             this.panel1.Controls.Add(this.pictureBox6);
             this.panel1.Controls.Add(this.btnStatistics);
             this.panel1.Controls.Add(this.pictureBox5);
-            this.panel1.Controls.Add(this.btnTill);
             this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.btnEmployee);
             this.panel1.Controls.Add(this.pictureBox3);
@@ -94,7 +89,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(275, 648);
+            this.panel1.Size = new System.Drawing.Size(275, 593);
             this.panel1.TabIndex = 0;
             // 
             // label2
@@ -121,7 +116,7 @@
             // pictureBox10
             // 
             this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(9, 586);
+            this.pictureBox10.Location = new System.Drawing.Point(9, 530);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(49, 50);
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -134,7 +129,7 @@
             this.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(64, 586);
+            this.btnExit.Location = new System.Drawing.Point(64, 530);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(199, 50);
             this.btnExit.TabIndex = 18;
@@ -144,7 +139,7 @@
             // pictureBox9
             // 
             this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(9, 530);
+            this.pictureBox9.Location = new System.Drawing.Point(9, 474);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(49, 50);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -157,36 +152,26 @@
             this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSettings.ForeColor = System.Drawing.Color.White;
-            this.btnSettings.Location = new System.Drawing.Point(64, 530);
+            this.btnSettings.Location = new System.Drawing.Point(64, 474);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(199, 50);
             this.btnSettings.TabIndex = 16;
             this.btnSettings.Text = "SETTINGS";
             this.btnSettings.UseVisualStyleBackColor = true;
             // 
-            // pictureBox8
+            // btnTill
             // 
-            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.Location = new System.Drawing.Point(9, 474);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(49, 50);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox8.TabIndex = 15;
-            this.pictureBox8.TabStop = false;
-            // 
-            // btnMovement
-            // 
-            this.btnMovement.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnMovement.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
-            this.btnMovement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMovement.ForeColor = System.Drawing.Color.White;
-            this.btnMovement.Location = new System.Drawing.Point(64, 474);
-            this.btnMovement.Name = "btnMovement";
-            this.btnMovement.Size = new System.Drawing.Size(199, 50);
-            this.btnMovement.TabIndex = 14;
-            this.btnMovement.Text = "MOVEMENTS";
-            this.btnMovement.UseVisualStyleBackColor = true;
-            this.btnMovement.Click += new System.EventHandler(this.btnMovement_Click);
+            this.btnTill.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnTill.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
+            this.btnTill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTill.ForeColor = System.Drawing.Color.White;
+            this.btnTill.Location = new System.Drawing.Point(64, 306);
+            this.btnTill.Name = "btnTill";
+            this.btnTill.Size = new System.Drawing.Size(199, 50);
+            this.btnTill.TabIndex = 14;
+            this.btnTill.Text = "TILL";
+            this.btnTill.UseVisualStyleBackColor = true;
+            this.btnTill.Click += new System.EventHandler(this.btnMovement_Click);
             // 
             // pictureBox7
             // 
@@ -233,29 +218,6 @@
             this.btnStatistics.TabIndex = 10;
             this.btnStatistics.Text = "STATISTICS";
             this.btnStatistics.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(9, 306);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(49, 50);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 9;
-            this.pictureBox5.TabStop = false;
-            // 
-            // btnTill
-            // 
-            this.btnTill.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnTill.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
-            this.btnTill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTill.ForeColor = System.Drawing.Color.White;
-            this.btnTill.Location = new System.Drawing.Point(64, 306);
-            this.btnTill.Name = "btnTill";
-            this.btnTill.Size = new System.Drawing.Size(199, 50);
-            this.btnTill.TabIndex = 8;
-            this.btnTill.Text = "TILL";
-            this.btnTill.UseVisualStyleBackColor = true;
             // 
             // pictureBox4
             // 
@@ -361,13 +323,23 @@
             this.panel2.Size = new System.Drawing.Size(890, 27);
             this.panel2.TabIndex = 1;
             // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(9, 306);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(49, 50);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 9;
+            this.pictureBox5.TabStop = false;
+            // 
             // frmMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1159, 648);
+            this.ClientSize = new System.Drawing.Size(1159, 593);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Berlin Sans FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -381,14 +353,13 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -404,14 +375,11 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.Button btnSettings;
-        private System.Windows.Forms.PictureBox pictureBox8;
-        private System.Windows.Forms.Button btnMovement;
+        private System.Windows.Forms.Button btnTill;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Button btnPassUsers;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Button btnStatistics;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.Button btnTill;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Button btnEmployee;
         private System.Windows.Forms.PictureBox pictureBox3;
@@ -419,6 +387,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnClients;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.PictureBox pictureBox5;
     }
 }
 

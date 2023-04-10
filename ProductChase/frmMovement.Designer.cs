@@ -54,7 +54,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtCost = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtFilter = new System.Windows.Forms.TextBox();
+            this.dtpEnd = new System.Windows.Forms.DateTimePicker();
+            this.dtpStart = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -161,6 +162,7 @@
             this.btnDelete.TabIndex = 94;
             this.btnDelete.Text = "DELETE";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // pictureBox3
             // 
@@ -184,6 +186,7 @@
             this.btnUpdate.TabIndex = 92;
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // pictureBox2
             // 
@@ -207,6 +210,7 @@
             this.btnSave.TabIndex = 90;
             this.btnSave.Text = "SAVE";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txtId
             // 
@@ -255,6 +259,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(886, 441);
             this.dataGridView1.TabIndex = 85;
+            this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
             // 
             // cmbCategory
             // 
@@ -331,13 +336,23 @@
             this.label8.TabIndex = 112;
             this.label8.Text = "FILTER:";
             // 
-            // txtFilter
+            // dtpEnd
             // 
-            this.txtFilter.Location = new System.Drawing.Point(123, 207);
-            this.txtFilter.MaxLength = 50;
-            this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(200, 25);
-            this.txtFilter.TabIndex = 113;
+            this.dtpEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpEnd.Location = new System.Drawing.Point(225, 207);
+            this.dtpEnd.Name = "dtpEnd";
+            this.dtpEnd.Size = new System.Drawing.Size(98, 25);
+            this.dtpEnd.TabIndex = 114;
+            this.dtpEnd.ValueChanged += new System.EventHandler(this.dtpEnd_ValueChanged);
+            // 
+            // dtpStart
+            // 
+            this.dtpStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpStart.Location = new System.Drawing.Point(123, 207);
+            this.dtpStart.Name = "dtpStart";
+            this.dtpStart.Size = new System.Drawing.Size(98, 25);
+            this.dtpStart.TabIndex = 115;
+            this.dtpStart.ValueChanged += new System.EventHandler(this.dtpStart_ValueChanged);
             // 
             // frmMovement
             // 
@@ -346,7 +361,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(54)))), ((int)(((byte)(80)))));
             this.ClientSize = new System.Drawing.Size(881, 681);
-            this.Controls.Add(this.txtFilter);
+            this.Controls.Add(this.dtpStart);
+            this.Controls.Add(this.dtpEnd);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cmbProduct);
             this.Controls.Add(this.label5);
@@ -417,6 +433,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtCost;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtFilter;
+        private System.Windows.Forms.DateTimePicker dtpEnd;
+        private System.Windows.Forms.DateTimePicker dtpStart;
     }
 }

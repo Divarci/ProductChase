@@ -24,14 +24,15 @@ namespace ProductChase
         {
             txtId.Clear();
             txtCost.Clear();
-           // dtp.Clear();
             txtQuantity.Clear();
-            cmbCategory.Text = "";
             cmbClient.Text = "";
             cmbEmployee.Text = "";
             cmbProduct.Text = "";
             dataGridView1.Columns[0].Width = 30;
-            dataGridView1.Columns[5].Width = 90;
+            dataGridView1.Columns[2].Width = 80;
+            dataGridView1.Columns[6].Width = 35;
+            dataGridView1.Columns[7].Width = 90;
+            dataGridView1.Columns[8].Width = 90;
 
         }
         public void listIt()
@@ -45,15 +46,14 @@ namespace ProductChase
 
         private void frmMovement_Load(object sender, EventArgs e)
         {
-            
 
-            SqlCommand cmd = new SqlCommand("Select * from TBLCATEGORY", conn.conn());
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cmbCategory.ValueMember = "CATEGORYID";
-            cmbCategory.DisplayMember = "CATEGORYNAME";
-            cmbCategory.DataSource = dt;
+            SqlCommand cmd1 = new SqlCommand("Select PRODUCTID,PRODUCTNAME from TBLPRODUCTS", conn.conn());
+            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+            DataTable dt1 = new DataTable();
+            da1.Fill(dt1);
+            cmbProduct.ValueMember = "PRODUCTID";
+            cmbProduct.DisplayMember = "PRODUCTNAME";
+            cmbProduct.DataSource = dt1;
 
             SqlCommand cmd2 = new SqlCommand("Select * from TBLEMPLOYEE", conn.conn());
             SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
@@ -73,18 +73,6 @@ namespace ProductChase
 
             listIt();
             clean();
-        }
-
-        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SqlCommand cmd = new SqlCommand("Select PRODUCTID, PRODUCTNAME +'-'+PRODUCTBRAND AS 'PRODUCT',PRODUCTPRICE from TBLPRODUCTS where category = @p1", conn.conn());
-            cmd.Parameters.AddWithValue("@p1", cmbCategory.SelectedValue);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cmbProduct.ValueMember = "PRODUCTID";
-            cmbProduct.DisplayMember = "PRODUCT";
-            cmbProduct.DataSource = dt;
         }
 
 
@@ -220,7 +208,7 @@ namespace ProductChase
                     cmd.ExecuteNonQuery();
                     conn.conn().Close();
 
-                    MessageBox.Show("Data Id: " + txtId.Text+" has been UPDATED", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Data Id: " + txtId.Text + " has been UPDATED", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     listIt();
                     clean();
                 }
@@ -232,11 +220,10 @@ namespace ProductChase
             int choosen = dataGridView1.SelectedCells[0].RowIndex;
 
             txtId.Text = dataGridView1.Rows[choosen].Cells[0].Value.ToString();
-            cmbCategory.Text = dataGridView1.Rows[choosen].Cells[1].Value.ToString();
-            cmbProduct.Text = dataGridView1.Rows[choosen].Cells[2].Value.ToString();
-            cmbClient.Text = dataGridView1.Rows[choosen].Cells[3].Value.ToString();
-            cmbEmployee.Text = dataGridView1.Rows[choosen].Cells[4].Value.ToString();
-            txtQuantity.Text = dataGridView1.Rows[choosen].Cells[5].Value.ToString();
+            cmbProduct.Text = dataGridView1.Rows[choosen].Cells[1].Value.ToString();
+            cmbClient.Text = dataGridView1.Rows[choosen].Cells[4].Value.ToString();
+            cmbEmployee.Text = dataGridView1.Rows[choosen].Cells[5].Value.ToString();
+            txtQuantity.Text = dataGridView1.Rows[choosen].Cells[6].Value.ToString();
 
         }
 
@@ -277,7 +264,7 @@ namespace ProductChase
 
         }
 
-       
+
         private void dtpStart_ValueChanged(object sender, EventArgs e)
         {
             SqlCommand cmd = new SqlCommand("MOVEMENT_SEARCH", conn.conn());

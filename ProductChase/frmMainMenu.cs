@@ -49,5 +49,11 @@ namespace ProductChase
             frmMovement fr = new frmMovement();
             fr.Show();
         }
+
+        private void btnStatistics_Click(object sender, EventArgs e)
+        {
+            frmStatistics fr = new frmStatistics();
+            fr.Show();
+        }
     }
 }

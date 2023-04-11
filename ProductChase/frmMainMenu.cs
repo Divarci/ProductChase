@@ -55,5 +55,37 @@ namespace ProductChase
             frmStatistics fr = new frmStatistics();
             fr.Show();
         }
+
+        private void frmMainMenu_Load(object sender, EventArgs e)
+        {
+            SqlCommand cmd = new SqlCommand("BEST_CITY", conn.conn());
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                crtCities.Series["Cities"].Points.AddXY(dr[0], dr[1]);
+            }
+            conn.conn().Close();
+
+            SqlCommand cmd2 = new SqlCommand("BEST_EMPLOYEE", conn.conn());
+            SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
+            DataTable dt2 = new DataTable();
+            da2.Fill(dt2);
+            dataGridView2.DataSource = dt2;
+            SqlDataReader dr2 = cmd2.ExecuteReader();
+            while (dr2.Read())
+            {
+                crtEmployee.Series["Employee"].Points.AddXY(dr2[0], dr2[1]);
+            }
+            conn.conn().Close();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

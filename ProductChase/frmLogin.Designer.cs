@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
-            this.txtUserName = new System.Windows.Forms.TextBox();
-            this.txtPass = new System.Windows.Forms.TextBox();
+            this.txtName2 = new System.Windows.Forms.TextBox();
+            this.txtName3 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -45,20 +45,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtUserName
+            // txtName2
             // 
-            this.txtUserName.Location = new System.Drawing.Point(109, 85);
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(175, 25);
-            this.txtUserName.TabIndex = 0;
+            this.txtName2.Location = new System.Drawing.Point(109, 85);
+            this.txtName2.Name = "txtName2";
+            this.txtName2.Size = new System.Drawing.Size(175, 25);
+            this.txtName2.TabIndex = 0;
             // 
-            // txtPass
+            // txtName3
             // 
-            this.txtPass.Location = new System.Drawing.Point(109, 117);
-            this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(175, 25);
-            this.txtPass.TabIndex = 1;
-            this.txtPass.UseSystemPasswordChar = true;
+            this.txtName3.Location = new System.Drawing.Point(109, 117);
+            this.txtName3.Name = "txtName3";
+            this.txtName3.Size = new System.Drawing.Size(175, 25);
+            this.txtName3.TabIndex = 1;
+            this.txtName3.UseSystemPasswordChar = true;
             // 
             // label1
             // 
@@ -87,6 +87,7 @@
             this.linkLabel1.TabIndex = 4;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "SIGN UP";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // btnCancel
             // 
@@ -173,16 +174,15 @@
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtPass);
-            this.Controls.Add(this.txtUserName);
+            this.Controls.Add(this.txtName3);
+            this.Controls.Add(this.txtName2);
             this.Font = new System.Drawing.Font("Berlin Sans FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmLogin";
-            this.Load += new System.EventHandler(this.frmLogin_Load);
+            this.Text = "LOGIN";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -194,8 +194,8 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtUserName;
-        private System.Windows.Forms.TextBox txtPass;
+        private System.Windows.Forms.TextBox txtName2;
+        private System.Windows.Forms.TextBox txtName3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.LinkLabel linkLabel1;

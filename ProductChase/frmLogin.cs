@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,21 +18,44 @@ namespace ProductChase
             InitializeComponent();
         }
 
+        ConnectionToSql conn = new ConnectionToSql();
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
-           
+            byte[] name = ASCIIEncoding.ASCII.GetBytes(txtName2.Text);
+            string named = Convert.ToBase64String(name);
 
-        }
+            byte[] name2 = ASCIIEncoding.ASCII.GetBytes(txtName3.Text);
+            string named2 = Convert.ToBase64String(name2);
 
-      
-        private void frmLogin_Load(object sender, EventArgs e)
-        {
+            SqlCommand cmd = new SqlCommand("Select * from TBLUSERS where USERNAME=@p1 and PASS=@P2",conn.conn());
+            cmd.Parameters.AddWithValue("@p1",named);
+            cmd.Parameters.AddWithValue("@p2",named2);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                named = dr[1].ToString();
+                named2 = dr[2].ToString();
+
+                frmMainMenu fr = new frmMainMenu();
+                fr.userid = dr[0].ToString();
+                fr.Show();
+                this.Hide();
+            }
+
 
         }
 
         private void pictureBox1_MouseHover(object sender, EventArgs e)
         {
-            txtPass.UseSystemPasswordChar = false;
+            txtName3.UseSystemPasswordChar = false;
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmSignUp fr = new frmSignUp();
+            fr.Show();
+            this.Hide();
         }
     }
 }

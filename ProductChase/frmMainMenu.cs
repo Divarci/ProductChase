@@ -18,6 +18,8 @@ namespace ProductChase
             InitializeComponent();
         }
 
+        public string userid;
+
         ConnectionToSql conn = new ConnectionToSql();
 
         private void btnCategories_Click(object sender, EventArgs e)
@@ -58,6 +60,15 @@ namespace ProductChase
 
         private void frmMainMenu_Load(object sender, EventArgs e)
         {
+            SqlCommand name = new SqlCommand("Select * from TBLUSERS where USERID=@p1",conn.conn());
+            name.Parameters.AddWithValue("@p1", userid);
+            SqlDataReader drname = name.ExecuteReader();
+            while (drname.Read())
+            {
+                lblNameSurname.Text = drname[3] + " " + drname[4];
+            }
+            conn.conn().Close();
+
             SqlCommand cmd = new SqlCommand("BEST_CITY", conn.conn());
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();

@@ -36,9 +36,10 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblNameSurname = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.btnExit = new System.Windows.Forms.Button();
+            this.btnSwitch = new System.Windows.Forms.Button();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnTill = new System.Windows.Forms.Button();
@@ -56,13 +57,12 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnProducts = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.crtEmployee = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.crtCities = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblNameSurname = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -86,7 +86,7 @@
             this.panel1.Controls.Add(this.lblNameSurname);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox10);
-            this.panel1.Controls.Add(this.btnExit);
+            this.panel1.Controls.Add(this.btnSwitch);
             this.panel1.Controls.Add(this.pictureBox9);
             this.panel1.Controls.Add(this.btnSettings);
             this.panel1.Controls.Add(this.btnTill);
@@ -109,6 +109,17 @@
             this.panel1.Size = new System.Drawing.Size(275, 593);
             this.panel1.TabIndex = 0;
             // 
+            // lblNameSurname
+            // 
+            this.lblNameSurname.AutoSize = true;
+            this.lblNameSurname.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNameSurname.ForeColor = System.Drawing.Color.White;
+            this.lblNameSurname.Location = new System.Drawing.Point(12, 9);
+            this.lblNameSurname.Name = "lblNameSurname";
+            this.lblNameSurname.Size = new System.Drawing.Size(61, 23);
+            this.lblNameSurname.TabIndex = 22;
+            this.lblNameSurname.Text = "NULL";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -129,19 +140,19 @@
             this.pictureBox10.TabIndex = 19;
             this.pictureBox10.TabStop = false;
             // 
-            // btnExit
+            // btnSwitch
             // 
-            this.btnExit.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(64, 527);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(199, 50);
-            this.btnExit.TabIndex = 18;
-            this.btnExit.Text = "EXIT";
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.btnSwitch.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSwitch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
+            this.btnSwitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSwitch.ForeColor = System.Drawing.Color.White;
+            this.btnSwitch.Location = new System.Drawing.Point(64, 527);
+            this.btnSwitch.Name = "btnSwitch";
+            this.btnSwitch.Size = new System.Drawing.Size(199, 50);
+            this.btnSwitch.TabIndex = 18;
+            this.btnSwitch.Text = "SWITCH USER";
+            this.btnSwitch.UseVisualStyleBackColor = true;
+            this.btnSwitch.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // pictureBox9
             // 
@@ -342,6 +353,17 @@
             this.panel2.Size = new System.Drawing.Size(890, 42);
             this.panel2.TabIndex = 1;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(204, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(430, 23);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "WELCOME TO SQL DATA REGISTER SOFTWARE";
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Gray;
@@ -420,28 +442,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(407, 167);
             this.dataGridView1.TabIndex = 86;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(204, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(430, 23);
-            this.label2.TabIndex = 21;
-            this.label2.Text = "WELCOME TO SQL DATA REGISTER SOFTWARE";
-            // 
-            // lblNameSurname
-            // 
-            this.lblNameSurname.AutoSize = true;
-            this.lblNameSurname.Font = new System.Drawing.Font("Berlin Sans FB", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNameSurname.ForeColor = System.Drawing.Color.White;
-            this.lblNameSurname.Location = new System.Drawing.Point(12, 9);
-            this.lblNameSurname.Name = "lblNameSurname";
-            this.lblNameSurname.Size = new System.Drawing.Size(61, 23);
-            this.lblNameSurname.TabIndex = 22;
-            this.lblNameSurname.Text = "NULL";
-            // 
             // frmMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -492,7 +492,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox10;
-        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnSwitch;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Button btnTill;

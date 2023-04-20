@@ -17,15 +17,17 @@ namespace ProductChase
         {
             InitializeComponent();
         }
+        public string userid;
 
         ConnectionToSql conn = new ConnectionToSql();
         public void listIt()
         {
-            SqlCommand cmd = new SqlCommand("Select * from TBLEMPLOYEE", conn.conn());
+            SqlCommand cmd = new SqlCommand("Select EMPLOYEEID,EMPLOYEENAME,USERID from TBLEMPLOYEE", conn.conn());
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
+            dataGridView1.Columns[2].Visible = false;
         }
 
         public void Clean()
@@ -69,8 +71,9 @@ namespace ProductChase
                 }
                 else
                 {
-                    SqlCommand cmd2 = new SqlCommand("insert into TBLEMPLOYEE (employeename) values (@p1)", conn.conn());
+                    SqlCommand cmd2 = new SqlCommand("insert into TBLEMPLOYEE (employeename,userid) values (@p1,@p2)", conn.conn());
                     cmd2.Parameters.AddWithValue("@p1", txtEmployeeName.Text);
+                    cmd2.Parameters.AddWithValue("@p2", userid);
                     cmd2.ExecuteNonQuery();
                     conn.conn().Close();
                     MessageBox.Show("Employee has been ADDED", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -141,6 +144,37 @@ namespace ProductChase
         {
             txtId.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             txtEmployeeName.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+        }
+
+        string userNameAndSurname;
+
+        private void recordInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (recordedUser == string.Empty || recordedUser == "" || recordedUser == null)
+            {
+                MessageBox.Show("Choose an Employee for information", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                SqlCommand cmd = new SqlCommand("SELECT NAME,SURNAME FROM TBLUSERS WHERE USERID=@P1", conn.conn());
+                cmd.Parameters.AddWithValue("@P1", recordedUser);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    userNameAndSurname = dr[0].ToString() + " " + dr[1].ToString();
+                }
+                conn.conn().Close();
+
+                MessageBox.Show(employeeName + " :This employee had been recorded by " + userNameAndSurname, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        string employeeName, recordedUser;
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int choosen = dataGridView1.SelectedCells[0].RowIndex;
+
+            employeeName = dataGridView1.Rows[choosen].Cells[1].Value.ToString();
+            recordedUser = dataGridView1.Rows[choosen].Cells[2].Value.ToString();
         }
     }
 }

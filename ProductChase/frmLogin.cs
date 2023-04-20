@@ -57,5 +57,15 @@ namespace ProductChase
             fr.Show();
             this.Hide();
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+            txtName3.UseSystemPasswordChar = true;
+        }
     }
 }

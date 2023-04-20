@@ -22,6 +22,8 @@ namespace ProductChase
 
         ConnectionToSql conn = new ConnectionToSql();
 
+        public string userid;
+
         private void listIt()
         {
             SqlCommand cmd = new SqlCommand("EXECUTE LISTPRODUCTS", conn.conn());
@@ -29,6 +31,7 @@ namespace ProductChase
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
+            dataGridView1.Columns[8].Visible = false;
         }
         private void clean()
         {
@@ -96,13 +99,14 @@ namespace ProductChase
                     }
                     else
                     {
-                        SqlCommand cmd = new SqlCommand("insert into TBLPRODUCTS (PRODUCTNAME,PRODUCTBRAND,CATEGORY,PRODUCTCOST,PRODUCTPRICE,PRODUCTSTOCK) values (@p1,@p2,@p3,@p4,@p5,@p6)", conn.conn());
+                        SqlCommand cmd = new SqlCommand("insert into TBLPRODUCTS (PRODUCTNAME,PRODUCTBRAND,CATEGORY,PRODUCTCOST,PRODUCTPRICE,PRODUCTSTOCK,USERID) values (@p1,@p2,@p3,@p4,@p5,@p6,@p7)", conn.conn());
                         cmd.Parameters.AddWithValue("@p1", txtProductName.Text);
                         cmd.Parameters.AddWithValue("@p2", txtBrand.Text);
                         cmd.Parameters.AddWithValue("@p3", cbmCategory.SelectedValue);
                         cmd.Parameters.AddWithValue("@p4", txtCost.Text);
                         cmd.Parameters.AddWithValue("@p5", txtPrice.Text);
                         cmd.Parameters.AddWithValue("@p6", txtStock.Text);
+                        cmd.Parameters.AddWithValue("@p7", userid);
                         cmd.ExecuteNonQuery();
                         conn.conn().Close();
 
@@ -165,6 +169,7 @@ namespace ProductChase
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
+            dataGridView1.Columns[8].Visible = false;
 
         }
 
@@ -241,6 +246,40 @@ namespace ProductChase
                     listIt();
                 }
             }
+        }
+       
+        string userNameAndSurname;
+
+        private void recordInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (recordedUser == string.Empty || recordedUser == "" || recordedUser == null)
+            {
+                MessageBox.Show("Choose a Product for information", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                SqlCommand cmd = new SqlCommand("SELECT NAME,SURNAME FROM TBLUSERS WHERE USERID=@P1", conn.conn());
+                cmd.Parameters.AddWithValue("@P1", recordedUser);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    userNameAndSurname = dr[0].ToString() + " " + dr[1].ToString();
+                }
+                conn.conn().Close();
+
+                MessageBox.Show(productName + " :This Product had been recorded by " + userNameAndSurname, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        string productName, recordedUser;
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int choosen = dataGridView1.SelectedCells[0].RowIndex;
+
+            productName = dataGridView1.Rows[choosen].Cells[1].Value.ToString();
+            recordedUser = dataGridView1.Rows[choosen].Cells[8].Value.ToString();
+
+
+
         }
     }
 }

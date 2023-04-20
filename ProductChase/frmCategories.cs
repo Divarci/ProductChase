@@ -18,13 +18,16 @@ namespace ProductChase
             InitializeComponent();
         }
         ConnectionToSql conn = new ConnectionToSql();
+
+        public string userid;
         public void listIt()
         {
-            SqlCommand cmd = new SqlCommand("Select * from TBLCATEGORY", conn.conn());
+            SqlCommand cmd = new SqlCommand("Select CATEGORYID as 'CATEGORY ID',CATEGORYNAME AS 'CATEGORY NAME',USERID from TBLCATEGORY", conn.conn());
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
+            dataGridView1.Columns[2].Visible = false;
         }
 
         public void Clean()
@@ -64,8 +67,9 @@ namespace ProductChase
                 }
                 else
                 {
-                    SqlCommand cmd2 = new SqlCommand("insert into TBLCATEGORY (CATEGORYNAME) values (@p1)", conn.conn());
+                    SqlCommand cmd2 = new SqlCommand("insert into TBLCATEGORY (CATEGORYNAME,USERID) values (@p1,@P2)", conn.conn());
                     cmd2.Parameters.AddWithValue("@p1", txtCatergory.Text);
+                    cmd2.Parameters.AddWithValue("@p2", userid);
                     cmd2.ExecuteNonQuery();
                     conn.conn().Close();
                     MessageBox.Show("Category has been ADDED", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -140,5 +144,39 @@ namespace ProductChase
         {
             listIt();
         }
+        string userNameAndSurname;
+        private void recordInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (recordedUser == string.Empty || recordedUser == "" || recordedUser == null)
+            {
+                MessageBox.Show("Choose a category for information", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                SqlCommand cmd = new SqlCommand("SELECT NAME,SURNAME FROM TBLUSERS WHERE USERID=@P1", conn.conn());
+                cmd.Parameters.AddWithValue("@P1", recordedUser);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    userNameAndSurname = dr[0].ToString() + " " + dr[1].ToString();
+                }
+                conn.conn().Close();
+
+                MessageBox.Show(category + " category had been recorded by " + userNameAndSurname, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
+
+        string category, recordedUser;
+
+
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int choosen = dataGridView1.SelectedCells[0].RowIndex;
+
+            category = dataGridView1.Rows[choosen].Cells[1].Value.ToString();
+            recordedUser = dataGridView1.Rows[choosen].Cells[2].Value.ToString();
+        }
+
     }
 }

@@ -25,30 +25,35 @@ namespace ProductChase
         private void btnCategories_Click(object sender, EventArgs e)
         {
             frmCategories fr = new frmCategories();
+            fr.userid = userid;
             fr.Show();
         }
 
         private void btnEmployee_Click(object sender, EventArgs e)
         {
             frmEmployee fr = new frmEmployee();
+            fr.userid = userid;
             fr.Show();
         }
 
         private void btnProducts_Click(object sender, EventArgs e)
         {
             frmProducts fr = new frmProducts();
+            fr.userid = userid;
             fr.Show();
         }
 
         private void btnClients_Click(object sender, EventArgs e)
         {
             frmClient fr = new frmClient();
+            fr.userid = userid;
             fr.Show();
         }
 
         private void btnMovement_Click(object sender, EventArgs e)
         {
             frmMovement fr = new frmMovement();
+            fr.userid = userid;
             fr.Show();
         }
 
@@ -96,7 +101,9 @@ namespace ProductChase
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            frmLogin fr = new frmLogin();
+            fr.Show();
+            this.Close();
         }
     }
 }

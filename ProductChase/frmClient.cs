@@ -18,7 +18,7 @@ namespace ProductChase
             InitializeComponent();
         }
         ConnectionToSql conn = new ConnectionToSql();
-
+        public string userid;
         public void listIt()
         {
             SqlCommand cmd = new SqlCommand("EXECUTE LISTCLIENT", conn.conn());
@@ -26,6 +26,7 @@ namespace ProductChase
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
+            dataGridView1.Columns[7].Visible = false;
         }
 
         public void clean()
@@ -95,12 +96,13 @@ namespace ProductChase
                     }
                     else
                     {
-                        SqlCommand cmd = new SqlCommand("insert into TBLCLIENTS (CLIENTNAME,CLIENTSURNAME,CLIENTCITY,CLIENTMOBILE,CLIENTEMAIL) values (@p1,@p2,@p3,@p4,@p5)", conn.conn());
+                        SqlCommand cmd = new SqlCommand("insert into TBLCLIENTS (CLIENTNAME,CLIENTSURNAME,CLIENTCITY,CLIENTMOBILE,CLIENTEMAIL,USERID) values (@p1,@p2,@p3,@p4,@p5,@P6)", conn.conn());
                         cmd.Parameters.AddWithValue("@p1", txtClientName.Text);
                         cmd.Parameters.AddWithValue("@p2", txtClientSurname.Text);
                         cmd.Parameters.AddWithValue("@p3", cmbCity.SelectedValue);
                         cmd.Parameters.AddWithValue("@p4", txtClientMobile.Text);
                         cmd.Parameters.AddWithValue("@p5", txtClientEmail.Text);
+                        cmd.Parameters.AddWithValue("@p6", userid);
 
                         cmd.ExecuteNonQuery();
                         conn.conn().Close();
@@ -134,12 +136,13 @@ namespace ProductChase
                     }
                     else
                     {
-                        SqlCommand cmd = new SqlCommand("insert into TBLCLIENTS (CLIENTNAME,CLIENTSURNAME,CLIENTCITY,CLIENTMOBILE,CLIENTEMAIL) values (@p1,@p2,@p3,@p4,@p5)", conn.conn());
+                        SqlCommand cmd = new SqlCommand("insert into TBLCLIENTS (CLIENTNAME,CLIENTSURNAME,CLIENTCITY,CLIENTMOBILE,CLIENTEMAIL,USERID) values (@p1,@p2,@p3,@p4,@p5,@P6)", conn.conn());
                         cmd.Parameters.AddWithValue("@p1", txtClientName.Text);
                         cmd.Parameters.AddWithValue("@p2", txtClientSurname.Text);
                         cmd.Parameters.AddWithValue("@p3", cmbCity.SelectedValue);
                         cmd.Parameters.AddWithValue("@p4", txtClientMobile.Text);
                         cmd.Parameters.AddWithValue("@p5", txtClientEmail.Text);
+                        cmd.Parameters.AddWithValue("@p6", userid);
 
                         cmd.ExecuteNonQuery();
                         conn.conn().Close();
@@ -149,10 +152,6 @@ namespace ProductChase
                         clean();
                     }
                 }
-                //list yapinca lear ekle
-                //eski yapilan bos halde update delete incele
-
-
 
             }
         }
@@ -227,6 +226,41 @@ namespace ProductChase
                     listIt();
                 }
             }
+        }
+        
+        string userNameAndSurname;
+        private void recordInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (recordedUser == string.Empty || recordedUser == "" || recordedUser == null)
+            {
+                MessageBox.Show("Choose a Client for information", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                SqlCommand cmd = new SqlCommand("SELECT NAME,SURNAME FROM TBLUSERS WHERE USERID=@P1", conn.conn());
+                cmd.Parameters.AddWithValue("@P1", recordedUser);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    userNameAndSurname = dr[0].ToString() + " " + dr[1].ToString();
+                }
+                conn.conn().Close();
+
+                MessageBox.Show(clientNameAndSurname + " : This client had been recorded by " + userNameAndSurname, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        string clientNameAndSurname, recordedUser;
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int choosen;
+            choosen = dataGridView1.SelectedCells[0].RowIndex;
+
+
+            clientNameAndSurname = dataGridView1.Rows[choosen].Cells[1].Value.ToString() + " " + dataGridView1.Rows[choosen].Cells[2].Value.ToString(); ;
+            recordedUser = dataGridView1.Rows[choosen].Cells[7].Value.ToString();
+
+
+
         }
     }
 }

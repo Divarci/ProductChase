@@ -20,6 +20,7 @@ namespace ProductChase
         }
         ConnectionToSql conn = new ConnectionToSql();
 
+        public string userid;
         public void clean()
         {
             txtId.Clear();
@@ -28,12 +29,16 @@ namespace ProductChase
             cmbClient.Text = "";
             cmbEmployee.Text = "";
             cmbProduct.Text = "";
-            dataGridView1.Columns[0].Width = 30;
-            dataGridView1.Columns[2].Width = 80;
-            dataGridView1.Columns[6].Width = 35;
-            dataGridView1.Columns[7].Width = 90;
-            dataGridView1.Columns[8].Width = 90;
+            
 
+        }
+        void SettingDataGridView(DataGridView dtv)
+        {
+            dtv.Columns[0].Width = 30;
+            dtv.Columns[2].Width = 80;
+            dtv.Columns[6].Width = 40;
+            dtv.Columns[7].Width = 90;
+            dtv.Columns[8].Width = 90;
         }
         public void listIt()
         {
@@ -42,6 +47,10 @@ namespace ProductChase
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
+            dataGridView1.Columns[9].Visible = false;
+
+            SettingDataGridView(dataGridView1 );
+            
         }
 
         private void frmMovement_Load(object sender, EventArgs e)
@@ -168,11 +177,12 @@ namespace ProductChase
                 }
                 else
                 {
-                    SqlCommand cmd = new SqlCommand("insert into TBLMOVEMENT (PRODUCT,CLIENT,EMPLOYEE,QUANTITY) VALUES (@P1,@P2,@P3,@P4)", conn.conn());
+                    SqlCommand cmd = new SqlCommand("insert into TBLMOVEMENT (PRODUCT,CLIENT,EMPLOYEE,QUANTITY,userid) VALUES (@P1,@P2,@P3,@P4,@p5)", conn.conn());
                     cmd.Parameters.AddWithValue("@p1", cmbProduct.SelectedValue);
                     cmd.Parameters.AddWithValue("@p2", cmbClient.SelectedValue);
                     cmd.Parameters.AddWithValue("@p3", cmbEmployee.SelectedValue);
                     cmd.Parameters.AddWithValue("@p4", txtQuantity.Text);
+                    cmd.Parameters.AddWithValue("@p5", userid);
                     cmd.ExecuteNonQuery();
                     conn.conn().Close();
 
@@ -261,7 +271,8 @@ namespace ProductChase
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
-
+            dataGridView1.Columns[9].Visible = false;
+            SettingDataGridView(dataGridView1);
         }
 
 
@@ -275,6 +286,38 @@ namespace ProductChase
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
+            dataGridView1.Columns[9].Visible = false;
+            SettingDataGridView(dataGridView1);
+        }
+        string userNameAndSurname;
+
+        private void recordInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (recordedUser == string.Empty || recordedUser == "" || recordedUser == null)
+            {
+                MessageBox.Show("Choose a Record for information", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                SqlCommand cmd = new SqlCommand("SELECT NAME,SURNAME FROM TBLUSERS WHERE USERID=@P1", conn.conn());
+                cmd.Parameters.AddWithValue("@P1", recordedUser);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    userNameAndSurname = dr[0].ToString() + " " + dr[1].ToString();
+                }
+                conn.conn().Close();
+
+                MessageBox.Show(movementId + " :This data had been recorded by " + userNameAndSurname, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        string movementId, recordedUser;
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int choosen = dataGridView1.SelectedCells[0].RowIndex;
+
+            movementId = dataGridView1.Rows[choosen].Cells[0].Value.ToString();
+            recordedUser = dataGridView1.Rows[choosen].Cells[9].Value.ToString();
         }
     }
 }

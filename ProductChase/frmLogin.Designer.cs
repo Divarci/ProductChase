@@ -48,6 +48,7 @@
             // txtName2
             // 
             this.txtName2.Location = new System.Drawing.Point(109, 85);
+            this.txtName2.MaxLength = 20;
             this.txtName2.Name = "txtName2";
             this.txtName2.Size = new System.Drawing.Size(175, 25);
             this.txtName2.TabIndex = 0;
@@ -55,6 +56,7 @@
             // txtName3
             // 
             this.txtName3.Location = new System.Drawing.Point(109, 117);
+            this.txtName3.MaxLength = 20;
             this.txtName3.Name = "txtName3";
             this.txtName3.Size = new System.Drawing.Size(175, 25);
             this.txtName3.TabIndex = 1;
@@ -185,6 +187,7 @@
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LOGIN";
+            this.Load += new System.EventHandler(this.frmLogin_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

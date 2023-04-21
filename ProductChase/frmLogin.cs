@@ -67,5 +67,10 @@ namespace ProductChase
         {
             txtName3.UseSystemPasswordChar = true;
         }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

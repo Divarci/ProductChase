@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
@@ -84,6 +85,12 @@
     <Compile Include="frmMovement.Designer.cs">
       <DependentUpon>frmMovement.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPassAndUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPassAndUsers.Designer.cs">
+      <DependentUpon>frmPassAndUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProducts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMovement.resx">
       <DependentUpon>frmMovement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPassAndUsers.resx">
+      <DependentUpon>frmPassAndUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProducts.resx">
       <DependentUpon>frmProducts.cs</DependentUpon>

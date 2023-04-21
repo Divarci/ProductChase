@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace ProductChase
 {
@@ -62,15 +64,15 @@ namespace ProductChase
             frmStatistics fr = new frmStatistics();
             fr.Show();
         }
-
+        public string newInfo;
         private void frmMainMenu_Load(object sender, EventArgs e)
         {
-            SqlCommand name = new SqlCommand("Select * from TBLUSERS where USERID=@p1",conn.conn());
+            SqlCommand name = new SqlCommand("Select * from TBLUSERS where USERID=@p1", conn.conn());
             name.Parameters.AddWithValue("@p1", userid);
             SqlDataReader drname = name.ExecuteReader();
             while (drname.Read())
             {
-                lblNameSurname.Text = drname[3] + " " + drname[4];
+                newInfo = drname[3] + " " + drname[4];
             }
             conn.conn().Close();
 
@@ -97,6 +99,8 @@ namespace ProductChase
                 crtEmployee.Series["Employee"].Points.AddXY(dr2[0], dr2[1]);
             }
             conn.conn().Close();
+
+            lblNameSurname.Text = newInfo;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -104,6 +108,26 @@ namespace ProductChase
             frmLogin fr = new frmLogin();
             fr.Show();
             this.Close();
+        }
+
+
+
+        private void btnPassUsers_Click(object sender, EventArgs e)
+        {
+            frmPassAndUsers fr = new frmPassAndUsers();
+            fr.userid = userid;
+            fr.Show();
+            this.Close();
+        }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            string backgroundColor = ConfigurationManager.AppSettings["BackgroundColor"];
+
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["BackgroundColor"].Value = "Red";
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
         }
     }
 }

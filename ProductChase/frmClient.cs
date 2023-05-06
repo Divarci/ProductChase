@@ -19,14 +19,39 @@ namespace ProductChase
         }
         ConnectionToSql conn = new ConnectionToSql();
         public string userid;
+        void SettingDataGridView(DataGridView dtv)
+        {
+            dtv.Columns[0].Width = 50;
+            dtv.Columns[1].Width = 110;
+            dtv.Columns[2].Width = 110;
+            dtv.Columns[3].Width = 80;
+            dtv.Columns[4].Width = 85;
+            dtv.Columns[5].Width = 125;
+            dtv.Columns[6].Width = 95;
+            dtv.Columns[7].Visible = false;
+            dtv.Columns[8].Visible = false;
+
+        }
         public void listIt()
         {
-            SqlCommand cmd = new SqlCommand("EXECUTE LISTCLIENT", conn.conn());
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dataGridView1.DataSource = dt;
-            dataGridView1.Columns[7].Visible = false;
+            if (cbSee.Checked == true)
+            {
+                SqlCommand cmd = new SqlCommand("EXECUTE LISTCLIENT", conn.conn());
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dataGridView1.DataSource = dt;
+                SettingDataGridView(dataGridView1);
+            }
+            else
+            {
+                SqlCommand cmd = new SqlCommand("EXECUTE LIST_CLIENT_ACTIVE", conn.conn());
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dataGridView1.DataSource = dt;
+                SettingDataGridView(dataGridView1);
+            }
         }
 
         public void clean()
@@ -53,13 +78,29 @@ namespace ProductChase
 
         private void cmbCity_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SqlCommand cmd = new SqlCommand("LISTCLIENTWITHFILTER", conn.conn());
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@p1", cmbCity.Text);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dataGridView1.DataSource = dt;
+            if (cbSet.Checked == true)
+            {
+                SqlCommand cmd = new SqlCommand("LISTCLIENTWITHFILTER", conn.conn());
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@p1", cmbCity.Text);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dataGridView1.DataSource = dt;
+                SettingDataGridView(dataGridView1);
+            }
+            else
+            {
+
+                SqlCommand cmd = new SqlCommand("LIST_CLIENTFILTER_ACTIVE", conn.conn());
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@p1", cmbCity.Text);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dataGridView1.DataSource = dt;
+                SettingDataGridView(dataGridView1);
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -96,7 +137,7 @@ namespace ProductChase
                     }
                     else
                     {
-                        SqlCommand cmd = new SqlCommand("insert into TBLCLIENTS (CLIENTNAME,CLIENTSURNAME,CLIENTCITY,CLIENTMOBILE,CLIENTEMAIL,USERID) values (@p1,@p2,@p3,@p4,@p5,@P6)", conn.conn());
+                        SqlCommand cmd = new SqlCommand("insert into TBLCLIENTS (CLIENTNAME,CLIENTSURNAME,CLIENTCITY,CLIENTMOBILE,CLIENTEMAIL,USERID,INACTIVE) values (@p1,@p2,@p3,@p4,@p5,@P6,'0')", conn.conn());
                         cmd.Parameters.AddWithValue("@p1", txtClientName.Text);
                         cmd.Parameters.AddWithValue("@p2", txtClientSurname.Text);
                         cmd.Parameters.AddWithValue("@p3", cmbCity.SelectedValue);
@@ -166,6 +207,11 @@ namespace ProductChase
             txtClientSurname.Text = dataGridView1.Rows[choosen].Cells[2].Value.ToString();
             txtClientMobile.Text = dataGridView1.Rows[choosen].Cells[4].Value.ToString();
             txtClientEmail.Text = dataGridView1.Rows[choosen].Cells[5].Value.ToString();
+            if (dataGridView1.Rows[choosen].Cells[8].Value.ToString() == "True")
+            {
+                cbSet.Checked = true;
+            }
+            else { cbSet.Checked = false; }
             cmbCity.Text = dataGridView1.Rows[choosen].Cells[3].Value.ToString();
         }
 
@@ -187,13 +233,14 @@ namespace ProductChase
 
                 if (result == DialogResult.Yes)
                 {
-                    SqlCommand cmd = new SqlCommand("UPDATE TBLCLIENTS SET CLIENTNAME=@p1,CLIENTSURNAME=@p2,CLIENTCITY=@p3,CLIENTMOBILE=@p4,CLIENTEMAIL=@p5 where CLIENTID=@p6", conn.conn());
+                    SqlCommand cmd = new SqlCommand("UPDATE TBLCLIENTS SET CLIENTNAME=@p1,CLIENTSURNAME=@p2,CLIENTCITY=@p3,CLIENTMOBILE=@p4,CLIENTEMAIL=@p5,INACTIVE = @p7 where CLIENTID=@p6", conn.conn());
                     cmd.Parameters.AddWithValue("@p1", txtClientName.Text);
                     cmd.Parameters.AddWithValue("@p2", txtClientSurname.Text);
                     cmd.Parameters.AddWithValue("@p3", cmbCity.SelectedValue);
                     cmd.Parameters.AddWithValue("@p4", txtClientMobile.Text);
                     cmd.Parameters.AddWithValue("@p5", txtClientEmail.Text);
                     cmd.Parameters.AddWithValue("@p6", txtId.Text);
+                    cmd.Parameters.AddWithValue("@p7", cbSet.Checked);
                     cmd.ExecuteNonQuery();
                     conn.conn().Close();
 
@@ -206,28 +253,46 @@ namespace ProductChase
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (txtId.Text.Trim().Length == 0)
+            List<string> clientIdList = new List<string>();
+            SqlCommand cmd2 = new SqlCommand("select CLIENT from TBLMOVEMENT where CLIENT=@p1", conn.conn());
+            cmd2.Parameters.AddWithValue("@p1", txtId.Text);
+            SqlDataReader dr2 = cmd2.ExecuteReader();
+            while (dr2.Read())
             {
-                MessageBox.Show("Please enter a Valid Client Id by selection from table", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                clientIdList.Add(dr2[0].ToString());
+            }
+            conn.conn().Close();
+            if (clientIdList.Count > 0)
+            {
+                MessageBox.Show("You can not delete this client as it is connected other data. Try to use INACTIVE product", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                DialogResult result = MessageBox.Show("Are you sure to DELETE client Id: " + txtId.Text, "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-                if (result == DialogResult.Yes)
+                if (txtId.Text.Trim().Length == 0)
                 {
-                    SqlCommand cmd = new SqlCommand("Delete from TBLCLIENTS where clientId=@p1", conn.conn());
-                    cmd.Parameters.AddWithValue("@p1", txtId.Text);
-                    cmd.ExecuteNonQuery();
-                    conn.conn().Close();
+                    MessageBox.Show("Please enter a Valid Client Id by selection from table", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show("Are you sure to DELETE client Id: " + txtId.Text, "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
-                    MessageBox.Show("Client Id: " + txtId.Text + " has been DELETED", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    clean();
-                    listIt();
+                    if (result == DialogResult.Yes)
+                    {
+                        SqlCommand cmd = new SqlCommand("Delete from TBLCLIENTS where clientId=@p1", conn.conn());
+                        cmd.Parameters.AddWithValue("@p1", txtId.Text);
+                        cmd.ExecuteNonQuery();
+                        conn.conn().Close();
+
+                        MessageBox.Show("Client Id: " + txtId.Text + " has been DELETED", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        clean();
+                        listIt();
+                    }
                 }
             }
+
+            
         }
-        
+
         string userNameAndSurname;
         private void recordInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {

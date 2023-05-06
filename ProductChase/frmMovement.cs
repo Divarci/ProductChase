@@ -152,6 +152,10 @@ namespace ProductChase
             {
                 MessageBox.Show("Please enter Valid Informations", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            else if (txtQuantity.Text == "0")
+            {
+                MessageBox.Show("Qintity can not be 0", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             else
             {
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -22,12 +23,28 @@ namespace ProductChase
         public string userid;
         public void listIt()
         {
-            SqlCommand cmd = new SqlCommand("Select CATEGORYID as 'CATEGORY ID',CATEGORYNAME AS 'CATEGORY NAME',USERID from TBLCATEGORY", conn.conn());
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dataGridView1.DataSource = dt;
-            dataGridView1.Columns[2].Visible = false;
+            if (cbSee.Checked)
+            {
+                SqlCommand cmd = new SqlCommand("EXECUTE LIST_CATEGORY", conn.conn());
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dataGridView1.DataSource = dt;
+                dataGridView1.Columns[2].Visible = false;
+                dataGridView1.Columns[3].Visible = false;
+            }
+            else
+            {
+                SqlCommand cmd = new SqlCommand("EXECUTE LIST_CATEGORY_WITH_ACTIVE", conn.conn());
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dataGridView1.DataSource = dt;
+                dataGridView1.Columns[2].Visible = false;
+                dataGridView1.Columns[3].Visible = false;
+            }
+          
+            
         }
 
         public void Clean()
@@ -67,9 +84,10 @@ namespace ProductChase
                 }
                 else
                 {
-                    SqlCommand cmd2 = new SqlCommand("insert into TBLCATEGORY (CATEGORYNAME,USERID) values (@p1,@P2)", conn.conn());
+                    SqlCommand cmd2 = new SqlCommand("insert into TBLCATEGORY (CATEGORYNAME,USERID,INACTIVE) values (@p1,@P2,@p3)", conn.conn());
                     cmd2.Parameters.AddWithValue("@p1", txtCatergory.Text);
                     cmd2.Parameters.AddWithValue("@p2", userid);
+                    cmd2.Parameters.AddWithValue("@p3", cbSet.Checked);
                     cmd2.ExecuteNonQuery();
                     conn.conn().Close();
                     MessageBox.Show("Category has been ADDED", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -89,30 +107,53 @@ namespace ProductChase
         {
             txtId.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             txtCatergory.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            if (dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString() == "True")
+            {
+                cbSet.Checked = true;
+            }
+            else { cbSet.Checked = false; }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (txtId.Text.Trim().Length == 0)
+            List<string> categoryIdList = new List<string>();
+            SqlCommand cmd2 = new SqlCommand("Select CATEGORY from TBLPRODUCTS WHERE CATEGORY=@P1", conn.conn());
+            cmd2.Parameters.AddWithValue("@p1", txtId.Text);
+            SqlDataReader dr2 = cmd2.ExecuteReader();
+            while (dr2.Read())
             {
-                MessageBox.Show("Please enter a Valid Category Id by selection from table", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                categoryIdList.Add(dr2[0].ToString());
+            }
+            conn.conn().Close();
+            if (categoryIdList.Count > 0)
+            {
+                MessageBox.Show("You can not delete this category as it is connected other data. Try to use INACTIVE product", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                DialogResult result = MessageBox.Show("Are you sure to DELETE category Id: " + txtId.Text, "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-                if (result == DialogResult.Yes)
+                if (txtId.Text.Trim().Length == 0)
                 {
-                    SqlCommand cmd = new SqlCommand("delete from TBLCATEGORY where CategoryId=@p1", conn.conn());
-                    cmd.Parameters.AddWithValue("@p1", txtId.Text);
-                    cmd.ExecuteNonQuery();
-                    conn.conn().Close();
+                    MessageBox.Show("Please enter a Valid Category Id by selection from table", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show("Are you sure to DELETE category Id: " + txtId.Text, "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
-                    MessageBox.Show("Category Id: " + txtId.Text + " has been DELETED", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Clean();
-                    listIt();
+                    if (result == DialogResult.Yes)
+                    {
+                        SqlCommand cmd = new SqlCommand("delete from TBLCATEGORY where CategoryId=@p1", conn.conn());
+                        cmd.Parameters.AddWithValue("@p1", txtId.Text);
+                        cmd.ExecuteNonQuery();
+                        conn.conn().Close();
+
+                        MessageBox.Show("Category Id: " + txtId.Text + " has been DELETED", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Clean();
+                        listIt();
+                    }
                 }
             }
+
+           
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -127,9 +168,10 @@ namespace ProductChase
 
                 if (result == DialogResult.Yes)
                 {
-                    SqlCommand cmd = new SqlCommand("Update TBLCATEGORY set CategoryName=@p1 where categoryid=@p2", conn.conn());
+                    SqlCommand cmd = new SqlCommand("Update TBLCATEGORY set CategoryName=@p1,INACTIVE=@p3 where categoryid=@p2", conn.conn());
                     cmd.Parameters.AddWithValue("@p1", txtCatergory.Text);
                     cmd.Parameters.AddWithValue("@p2", txtId.Text);
+                    cmd.Parameters.AddWithValue("@p3", cbSet.Checked);
                     cmd.ExecuteNonQuery();
                     conn.conn().Close();
 

@@ -122,12 +122,6 @@ namespace ProductChase
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            string backgroundColor = ConfigurationManager.AppSettings["BackgroundColor"];
-
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["BackgroundColor"].Value = "Red";
-            config.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection("appSettings");
         }
     }
 }

@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCategories));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.recordInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
@@ -44,15 +46,15 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnList = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.recordInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cbSee = new System.Windows.Forms.CheckBox();
+            this.cbSet = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -75,44 +77,58 @@
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.recordInfoToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(136, 26);
+            // 
+            // recordInfoToolStripMenuItem
+            // 
+            this.recordInfoToolStripMenuItem.Name = "recordInfoToolStripMenuItem";
+            this.recordInfoToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.recordInfoToolStripMenuItem.Text = "Record Info";
+            this.recordInfoToolStripMenuItem.Click += new System.EventHandler(this.recordInfoToolStripMenuItem_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(41, 12);
+            this.label1.Location = new System.Drawing.Point(13, 12);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 18);
+            this.label1.Size = new System.Drawing.Size(61, 18);
             this.label1.TabIndex = 4;
-            this.label1.Text = "CATEGORY ID:";
+            this.label1.Text = "CAT. ID:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(13, 44);
+            this.label2.Location = new System.Drawing.Point(20, 44);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(137, 18);
+            this.label2.Size = new System.Drawing.Size(54, 18);
             this.label2.TabIndex = 4;
-            this.label2.Text = "CATEGORY NAME:";
+            this.label2.Text = "NAME:";
             // 
             // txtId
             // 
             this.txtId.Enabled = false;
-            this.txtId.Location = new System.Drawing.Point(157, 9);
+            this.txtId.Location = new System.Drawing.Point(74, 9);
             this.txtId.MaxLength = 50;
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(191, 25);
+            this.txtId.Size = new System.Drawing.Size(155, 25);
             this.txtId.TabIndex = 7;
             // 
             // txtCatergory
             // 
-            this.txtCatergory.Location = new System.Drawing.Point(157, 41);
+            this.txtCatergory.Location = new System.Drawing.Point(74, 41);
             this.txtCatergory.MaxLength = 50;
             this.txtCatergory.Name = "txtCatergory";
-            this.txtCatergory.Size = new System.Drawing.Size(191, 25);
-            this.txtCatergory.TabIndex = 8;
+            this.txtCatergory.Size = new System.Drawing.Size(155, 25);
+            this.txtCatergory.TabIndex = 0;
             // 
             // pictureBox2
             // 
@@ -134,7 +150,7 @@
             this.btnSave.Location = new System.Drawing.Point(416, 67);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(137, 50);
-            this.btnSave.TabIndex = 9;
+            this.btnSave.TabIndex = 2;
             this.btnSave.Text = "SAVE";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -159,7 +175,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(416, 125);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(137, 50);
-            this.btnUpdate.TabIndex = 11;
+            this.btnUpdate.TabIndex = 3;
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -184,7 +200,7 @@
             this.btnDelete.Location = new System.Drawing.Point(416, 183);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(137, 50);
-            this.btnDelete.TabIndex = 13;
+            this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "DELETE";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -192,9 +208,9 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(13, 73);
+            this.pictureBox5.Location = new System.Drawing.Point(13, 72);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(335, 162);
+            this.pictureBox5.Size = new System.Drawing.Size(335, 163);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 15;
             this.pictureBox5.TabStop = false;
@@ -219,24 +235,32 @@
             this.btnList.Location = new System.Drawing.Point(416, 9);
             this.btnList.Name = "btnList";
             this.btnList.Size = new System.Drawing.Size(137, 50);
-            this.btnList.TabIndex = 16;
+            this.btnList.TabIndex = 1;
             this.btnList.Text = "LIST AND CLEAR";
             this.btnList.UseVisualStyleBackColor = true;
             this.btnList.Click += new System.EventHandler(this.btnList_Click);
             // 
-            // contextMenuStrip1
+            // cbSee
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.recordInfoToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(136, 26);
+            this.cbSee.AutoSize = true;
+            this.cbSee.ForeColor = System.Drawing.Color.White;
+            this.cbSee.Location = new System.Drawing.Point(235, 12);
+            this.cbSee.Name = "cbSee";
+            this.cbSee.Size = new System.Drawing.Size(120, 22);
+            this.cbSee.TabIndex = 18;
+            this.cbSee.Text = "SEE INACTIVE";
+            this.cbSee.UseVisualStyleBackColor = true;
             // 
-            // recordInfoToolStripMenuItem
+            // cbSet
             // 
-            this.recordInfoToolStripMenuItem.Name = "recordInfoToolStripMenuItem";
-            this.recordInfoToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.recordInfoToolStripMenuItem.Text = "Record Info";
-            this.recordInfoToolStripMenuItem.Click += new System.EventHandler(this.recordInfoToolStripMenuItem_Click);
+            this.cbSet.AutoSize = true;
+            this.cbSet.ForeColor = System.Drawing.Color.White;
+            this.cbSet.Location = new System.Drawing.Point(235, 44);
+            this.cbSet.Name = "cbSet";
+            this.cbSet.Size = new System.Drawing.Size(119, 22);
+            this.cbSet.TabIndex = 19;
+            this.cbSet.Text = "SET INACTIVE";
+            this.cbSet.UseVisualStyleBackColor = true;
             // 
             // frmCategories
             // 
@@ -245,6 +269,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(54)))), ((int)(((byte)(80)))));
             this.ClientSize = new System.Drawing.Size(565, 681);
+            this.Controls.Add(this.cbSet);
+            this.Controls.Add(this.cbSee);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnList);
             this.Controls.Add(this.pictureBox5);
@@ -268,12 +294,12 @@
             this.Text = "CATEGORIES";
             this.Load += new System.EventHandler(this.frmCategories_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,5 +323,7 @@
         private System.Windows.Forms.Button btnList;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem recordInfoToolStripMenuItem;
+        private System.Windows.Forms.CheckBox cbSee;
+        private System.Windows.Forms.CheckBox cbSet;
     }
 }

@@ -28,9 +28,9 @@ namespace ProductChase
             byte[] name2 = ASCIIEncoding.ASCII.GetBytes(txtName3.Text);
             string named2 = Convert.ToBase64String(name2);
 
-            SqlCommand cmd = new SqlCommand("Select * from TBLUSERS where USERNAME=@p1 and PASS=@P2",conn.conn());
-            cmd.Parameters.AddWithValue("@p1",named);
-            cmd.Parameters.AddWithValue("@p2",named2);
+            SqlCommand cmd = new SqlCommand("Select * from TBLUSERS where USERNAME=@p1 and PASS=@P2", conn.conn());
+            cmd.Parameters.AddWithValue("@p1", named);
+            cmd.Parameters.AddWithValue("@p2", named2);
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
             {
@@ -41,6 +41,13 @@ namespace ProductChase
                 fr.userid = dr[0].ToString();
                 fr.Show();
                 this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Please provide valid information", "Id or Password Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtName2.Text = "";
+                txtName3.Text = "";
+                txtName2.Focus();
             }
 
 
@@ -70,7 +77,7 @@ namespace ProductChase
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-
+            txtName2.Focus();
         }
     }
 }

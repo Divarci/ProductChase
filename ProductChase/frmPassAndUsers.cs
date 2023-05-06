@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace ProductChase
 {
@@ -33,22 +34,69 @@ namespace ProductChase
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            byte[] uNcyropted = ASCIIEncoding.ASCII.GetBytes(txtUN.Text);
-            string uNcyropted2 = Convert.ToBase64String(uNcyropted);
+            byte[] name3 = ASCIIEncoding.ASCII.GetBytes(txtUN.Text);
+            string named3 = Convert.ToBase64String(name3);
 
-            byte[] uNcyropted3 = ASCIIEncoding.ASCII.GetBytes(txtUN2.Text);
-            string uNcyropted4 = Convert.ToBase64String(uNcyropted3);
+            SqlCommand cmd2 = new SqlCommand("select USERNAME from TBLUSERS", conn.conn());
+            SqlDataReader dr = cmd2.ExecuteReader();
 
+            List<string> userNameCollection = new List<string>();
+            int sameUserNameReader = 0;
 
-            SqlCommand cmd = new SqlCommand("update TBLUSERS SET username=@p1,pass=@p2,name=@p3,surname=@p4 where userid=@p5", conn.conn());
-            cmd.Parameters.AddWithValue("@p1", uNcyropted2);
-            cmd.Parameters.AddWithValue("@p2", uNcyropted4);
-            cmd.Parameters.AddWithValue("@p3", txtUN3.Text);
-            cmd.Parameters.AddWithValue("@p4", txtUN4.Text);
-            cmd.Parameters.AddWithValue("@p5", userid);
-            cmd.ExecuteNonQuery();
+            while (dr.Read())
+            {
+                userNameCollection.Add(dr[0].ToString());
+            }
             conn.conn().Close();
+
+            foreach (var item in userNameCollection)
+            {
+                if (named3 == item && txtUN.Text != usernameTemporary)
+                {
+                    sameUserNameReader++;
+                }
+            }
+
+            if (txtUN.Text == "" || txtUN2.Text == "" || txtUN3.Text == "" || txtUN4.Text == "")
+            {
+                MessageBox.Show("Please provide all informations", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (sameUserNameReader > 0)
+            {
+                MessageBox.Show("This username has already been taken bu another user.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+
+                byte[] uNcyropted = ASCIIEncoding.ASCII.GetBytes(txtUN.Text);
+                string uNcyropted2 = Convert.ToBase64String(uNcyropted);
+
+                byte[] uNcyropted3 = ASCIIEncoding.ASCII.GetBytes(txtUN2.Text);
+                string uNcyropted4 = Convert.ToBase64String(uNcyropted3);
+
+
+                SqlCommand cmd = new SqlCommand("update TBLUSERS SET username=@p1,pass=@p2,name=@p3,surname=@p4 where userid=@p5", conn.conn());
+                cmd.Parameters.AddWithValue("@p1", uNcyropted2);
+                cmd.Parameters.AddWithValue("@p2", uNcyropted4);
+                cmd.Parameters.AddWithValue("@p3", txtUN3.Text);
+                cmd.Parameters.AddWithValue("@p4", txtUN4.Text);
+                cmd.Parameters.AddWithValue("@p5", userid);
+                cmd.ExecuteNonQuery();
+                conn.conn().Close();
+
+                MessageBox.Show("User has been Updated", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtUN.Text = "";
+                txtUN2.Text = "";
+                txtUN3.Text = "";
+                txtUN4.Text = "";
+            }
+
+
+
+
         }
+
+        string usernameTemporary;
 
         private void pictureBox1_MouseHover(object sender, EventArgs e)
         {
@@ -82,6 +130,8 @@ namespace ProductChase
 
             txtUN.Text = original;
             txtUN2.Text = original2;
+            usernameTemporary = original;
+            
 
         }
 

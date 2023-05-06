@@ -68,7 +68,7 @@
             this.label1.Location = new System.Drawing.Point(12, 89);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(91, 18);
-            this.label1.TabIndex = 2;
+            this.label1.TabIndex = 9;
             this.label1.Text = "USERNAME:";
             // 
             // label2
@@ -77,7 +77,7 @@
             this.label2.Location = new System.Drawing.Point(8, 120);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 18);
-            this.label2.TabIndex = 3;
+            this.label2.TabIndex = 8;
             this.label2.Text = "PASSWORD:";
             // 
             // linkLabel1
@@ -101,7 +101,7 @@
             this.btnCancel.Location = new System.Drawing.Point(198, 159);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(86, 29);
-            this.btnCancel.TabIndex = 6;
+            this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "EXIT";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -115,7 +115,7 @@
             this.btnLogin.Location = new System.Drawing.Point(109, 159);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(86, 29);
-            this.btnLogin.TabIndex = 7;
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "LOG IN";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -165,6 +165,7 @@
             // 
             // frmLogin
             // 
+            this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;

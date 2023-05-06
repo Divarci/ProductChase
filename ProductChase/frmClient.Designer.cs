@@ -47,6 +47,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.recordInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtClientEmail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -54,8 +56,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.cmbCity = new System.Windows.Forms.ComboBox();
             this.txtClientBalance = new System.Windows.Forms.TextBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.recordInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cbSet = new System.Windows.Forms.CheckBox();
+            this.cbSee = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -67,17 +69,17 @@
             // 
             // txtClientSurname
             // 
-            this.txtClientSurname.Location = new System.Drawing.Point(142, 76);
+            this.txtClientSurname.Location = new System.Drawing.Point(95, 76);
             this.txtClientSurname.MaxLength = 50;
             this.txtClientSurname.Name = "txtClientSurname";
-            this.txtClientSurname.Size = new System.Drawing.Size(182, 25);
-            this.txtClientSurname.TabIndex = 73;
+            this.txtClientSurname.Size = new System.Drawing.Size(229, 25);
+            this.txtClientSurname.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(94, 112);
+            this.label3.Location = new System.Drawing.Point(47, 112);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 18);
@@ -88,12 +90,12 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(4, 79);
+            this.label4.Location = new System.Drawing.Point(6, 79);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(134, 18);
+            this.label4.Size = new System.Drawing.Size(82, 18);
             this.label4.TabIndex = 72;
-            this.label4.Text = "CLIENT SURNAME:";
+            this.label4.Text = "SURNAME:";
             // 
             // pictureBox1
             // 
@@ -115,7 +117,7 @@
             this.btnList.Location = new System.Drawing.Point(731, 10);
             this.btnList.Name = "btnList";
             this.btnList.Size = new System.Drawing.Size(137, 50);
-            this.btnList.TabIndex = 69;
+            this.btnList.TabIndex = 6;
             this.btnList.Text = "LIST AND CLEAR";
             this.btnList.UseVisualStyleBackColor = true;
             this.btnList.Click += new System.EventHandler(this.btnList_Click);
@@ -150,7 +152,7 @@
             this.btnDelete.Location = new System.Drawing.Point(731, 184);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(137, 50);
-            this.btnDelete.TabIndex = 66;
+            this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "DELETE";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -175,7 +177,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(731, 126);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(137, 50);
-            this.btnUpdate.TabIndex = 64;
+            this.btnUpdate.TabIndex = 8;
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -200,44 +202,44 @@
             this.btnSave.Location = new System.Drawing.Point(731, 68);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(137, 50);
-            this.btnSave.TabIndex = 62;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "SAVE";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txtClientName
             // 
-            this.txtClientName.Location = new System.Drawing.Point(142, 43);
+            this.txtClientName.Location = new System.Drawing.Point(95, 43);
             this.txtClientName.MaxLength = 50;
             this.txtClientName.Name = "txtClientName";
-            this.txtClientName.Size = new System.Drawing.Size(182, 25);
-            this.txtClientName.TabIndex = 61;
+            this.txtClientName.Size = new System.Drawing.Size(229, 25);
+            this.txtClientName.TabIndex = 0;
             // 
             // txtId
             // 
             this.txtId.Enabled = false;
-            this.txtId.Location = new System.Drawing.Point(142, 10);
+            this.txtId.Location = new System.Drawing.Point(95, 10);
             this.txtId.MaxLength = 50;
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(182, 25);
+            this.txtId.Size = new System.Drawing.Size(104, 25);
             this.txtId.TabIndex = 60;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(32, 46);
+            this.label2.Location = new System.Drawing.Point(34, 46);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(106, 18);
+            this.label2.Size = new System.Drawing.Size(54, 18);
             this.label2.TabIndex = 58;
-            this.label2.Text = "CLIENT NAME:";
+            this.label2.Text = "NAME:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(60, 13);
+            this.label1.Location = new System.Drawing.Point(10, 13);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 18);
@@ -264,19 +266,33 @@
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.recordInfoToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(136, 26);
+            // 
+            // recordInfoToolStripMenuItem
+            // 
+            this.recordInfoToolStripMenuItem.Name = "recordInfoToolStripMenuItem";
+            this.recordInfoToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.recordInfoToolStripMenuItem.Text = "Record Info";
+            this.recordInfoToolStripMenuItem.Click += new System.EventHandler(this.recordInfoToolStripMenuItem_Click);
+            // 
             // txtClientEmail
             // 
-            this.txtClientEmail.Location = new System.Drawing.Point(142, 175);
+            this.txtClientEmail.Location = new System.Drawing.Point(95, 175);
             this.txtClientEmail.MaxLength = 50;
             this.txtClientEmail.Name = "txtClientEmail";
-            this.txtClientEmail.Size = new System.Drawing.Size(182, 25);
-            this.txtClientEmail.TabIndex = 82;
+            this.txtClientEmail.Size = new System.Drawing.Size(229, 25);
+            this.txtClientEmail.TabIndex = 4;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(57, 211);
+            this.label5.Location = new System.Drawing.Point(7, 211);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 18);
@@ -287,7 +303,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(78, 178);
+            this.label6.Location = new System.Drawing.Point(28, 178);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(60, 18);
@@ -296,17 +312,17 @@
             // 
             // txtClientMobile
             // 
-            this.txtClientMobile.Location = new System.Drawing.Point(142, 142);
+            this.txtClientMobile.Location = new System.Drawing.Point(95, 142);
             this.txtClientMobile.MaxLength = 50;
             this.txtClientMobile.Name = "txtClientMobile";
-            this.txtClientMobile.Size = new System.Drawing.Size(182, 25);
-            this.txtClientMobile.TabIndex = 79;
+            this.txtClientMobile.Size = new System.Drawing.Size(229, 25);
+            this.txtClientMobile.TabIndex = 3;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(73, 145);
+            this.label7.Location = new System.Drawing.Point(23, 145);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(65, 18);
@@ -316,34 +332,42 @@
             // cmbCity
             // 
             this.cmbCity.FormattingEnabled = true;
-            this.cmbCity.Location = new System.Drawing.Point(142, 109);
+            this.cmbCity.Location = new System.Drawing.Point(95, 109);
             this.cmbCity.Name = "cmbCity";
-            this.cmbCity.Size = new System.Drawing.Size(182, 26);
-            this.cmbCity.TabIndex = 84;
+            this.cmbCity.Size = new System.Drawing.Size(229, 26);
+            this.cmbCity.TabIndex = 2;
             this.cmbCity.SelectedIndexChanged += new System.EventHandler(this.cmbCity_SelectedIndexChanged);
             // 
             // txtClientBalance
             // 
             this.txtClientBalance.Enabled = false;
-            this.txtClientBalance.Location = new System.Drawing.Point(142, 208);
+            this.txtClientBalance.Location = new System.Drawing.Point(95, 208);
             this.txtClientBalance.MaxLength = 50;
             this.txtClientBalance.Name = "txtClientBalance";
-            this.txtClientBalance.Size = new System.Drawing.Size(182, 25);
-            this.txtClientBalance.TabIndex = 83;
+            this.txtClientBalance.Size = new System.Drawing.Size(104, 25);
+            this.txtClientBalance.TabIndex = 5;
             // 
-            // contextMenuStrip1
+            // cbSet
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.recordInfoToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.cbSet.AutoSize = true;
+            this.cbSet.ForeColor = System.Drawing.Color.White;
+            this.cbSet.Location = new System.Drawing.Point(205, 210);
+            this.cbSet.Name = "cbSet";
+            this.cbSet.Size = new System.Drawing.Size(119, 22);
+            this.cbSet.TabIndex = 82;
+            this.cbSet.Text = "SET INACTIVE";
+            this.cbSet.UseVisualStyleBackColor = true;
             // 
-            // recordInfoToolStripMenuItem
+            // cbSee
             // 
-            this.recordInfoToolStripMenuItem.Name = "recordInfoToolStripMenuItem";
-            this.recordInfoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.recordInfoToolStripMenuItem.Text = "Record Info";
-            this.recordInfoToolStripMenuItem.Click += new System.EventHandler(this.recordInfoToolStripMenuItem_Click);
+            this.cbSee.AutoSize = true;
+            this.cbSee.ForeColor = System.Drawing.Color.White;
+            this.cbSee.Location = new System.Drawing.Point(205, 12);
+            this.cbSee.Name = "cbSee";
+            this.cbSee.Size = new System.Drawing.Size(120, 22);
+            this.cbSee.TabIndex = 83;
+            this.cbSee.Text = "SEE INACTIVE";
+            this.cbSee.UseVisualStyleBackColor = true;
             // 
             // frmClient
             // 
@@ -352,6 +376,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(54)))), ((int)(((byte)(80)))));
             this.ClientSize = new System.Drawing.Size(881, 681);
+            this.Controls.Add(this.cbSee);
+            this.Controls.Add(this.cbSet);
             this.Controls.Add(this.cmbCity);
             this.Controls.Add(this.txtClientBalance);
             this.Controls.Add(this.txtClientEmail);
@@ -423,5 +449,7 @@
         private System.Windows.Forms.TextBox txtClientBalance;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem recordInfoToolStripMenuItem;
+        private System.Windows.Forms.CheckBox cbSet;
+        private System.Windows.Forms.CheckBox cbSee;
     }
 }

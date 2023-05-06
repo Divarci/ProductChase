@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Drawing;
+
 namespace ProductChase.Properties
 {
 
@@ -26,5 +28,7 @@ namespace ProductChase.Properties
                 return defaultInstance;
             }
         }
+
+       
     }
 }

@@ -18,13 +18,18 @@ namespace ProductChase
         {
             InitializeComponent();
         }
+        //sql connection
         ConnectionToSql conn = new ConnectionToSql();
 
         public string userid;
+
+        //list method
         public void listIt()
         {
+            //checks active and inactive status
             if (cbSee.Checked)
             {
+                //all categories
                 SqlCommand cmd = new SqlCommand("EXECUTE LIST_CATEGORY", conn.conn());
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -35,6 +40,7 @@ namespace ProductChase
             }
             else
             {
+                //just active ones
                 SqlCommand cmd = new SqlCommand("EXECUTE LIST_CATEGORY_WITH_ACTIVE", conn.conn());
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -46,7 +52,7 @@ namespace ProductChase
           
             
         }
-
+        //clean method
         public void Clean()
         {
             txtId.Clear();
@@ -55,12 +61,14 @@ namespace ProductChase
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //checks if all forms are filled
             if (txtCatergory.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Please enter a Valid Category Name", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
+                //check if the category name that is written was in database or not
                 List<string> categoryNameList = new List<string>();
                 SqlCommand cmd1 = new SqlCommand("Select CategoryName from TBLCATEGORY", conn.conn());
                 SqlDataReader dr = cmd1.ExecuteReader();
@@ -82,6 +90,7 @@ namespace ProductChase
                 {
                     MessageBox.Show("This category has already been ADDED. Please try to add different category", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+                //if it is not
                 else
                 {
                     SqlCommand cmd2 = new SqlCommand("insert into TBLCATEGORY (CATEGORYNAME,USERID,INACTIVE) values (@p1,@P2,@p3)", conn.conn());
@@ -96,13 +105,13 @@ namespace ProductChase
                 }
             }
         }
-
+        //listing
         private void btnList_Click(object sender, EventArgs e)
         {
             listIt();
             Clean();
         }
-
+        //double click on table action
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             txtId.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
@@ -113,9 +122,10 @@ namespace ProductChase
             }
             else { cbSet.Checked = false; }
         }
-
+        //delete
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            //if a category is connected a data you cannot delete it.
             List<string> categoryIdList = new List<string>();
             SqlCommand cmd2 = new SqlCommand("Select CATEGORY from TBLPRODUCTS WHERE CATEGORY=@P1", conn.conn());
             cmd2.Parameters.AddWithValue("@p1", txtId.Text);
@@ -129,16 +139,20 @@ namespace ProductChase
             {
                 MessageBox.Show("You can not delete this category as it is connected other data. Try to use INACTIVE product", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            //if it is not
             else
             {
+                //check all infos were written or not
                 if (txtId.Text.Trim().Length == 0)
                 {
                     MessageBox.Show("Please enter a Valid Category Id by selection from table", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+                //if it is
                 else
                 {
+                    //ask to be sure
                     DialogResult result = MessageBox.Show("Are you sure to DELETE category Id: " + txtId.Text, "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
+                    //delete
                     if (result == DialogResult.Yes)
                     {
                         SqlCommand cmd = new SqlCommand("delete from TBLCATEGORY where CategoryId=@p1", conn.conn());
@@ -158,6 +172,7 @@ namespace ProductChase
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            //checks all infos were filed or not
             if (txtCatergory.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Please enter a Valid Category Name", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -165,7 +180,7 @@ namespace ProductChase
             else
             {
                 DialogResult result = MessageBox.Show("Are you sure to UPDATE category Id: " + txtId.Text, "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
+                //if it is not
                 if (result == DialogResult.Yes)
                 {
                     SqlCommand cmd = new SqlCommand("Update TBLCATEGORY set CategoryName=@p1,INACTIVE=@p3 where categoryid=@p2", conn.conn());
@@ -181,18 +196,22 @@ namespace ProductChase
                 }
             }
         }
-
+        //list
         private void frmCategories_Load(object sender, EventArgs e)
         {
             listIt();
         }
         string userNameAndSurname;
+
+        //strip menu right click 
         private void recordInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //if there is a userid
             if (recordedUser == string.Empty || recordedUser == "" || recordedUser == null)
             {
                 MessageBox.Show("Choose a category for information", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            //pulls user name and surname by userid which is came from single click on tanle
             else
             {
                 SqlCommand cmd = new SqlCommand("SELECT NAME,SURNAME FROM TBLUSERS WHERE USERID=@P1", conn.conn());
@@ -208,10 +227,10 @@ namespace ProductChase
             }
 
         }
-
+        // temporary objects keep values
         string category, recordedUser;
 
-
+        //single click on table
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             int choosen = dataGridView1.SelectedCells[0].RowIndex;

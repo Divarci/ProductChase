@@ -269,7 +269,7 @@
             this.Name = "frmSignUp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SIGN UP";
-            this.Load += new System.EventHandler(this.frmSignUp_Load);
+//            this.Load += new System.EventHandler(this.frmSignUp_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.panel2.ResumeLayout(false);

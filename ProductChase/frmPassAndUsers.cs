@@ -18,22 +18,25 @@ namespace ProductChase
         {
             InitializeComponent();
         }
+        //sql connection
         ConnectionToSql conn = new ConnectionToSql();
         public string userid;
-
+        //cancel
         private void btnCancel_Click(object sender, EventArgs e)
         {   
             frmMainMenu fr = new frmMainMenu();
-            fr.newInfo = txtUN3 + " " + txtUN4;
+            fr.nameAndSurname = txtUN3 + " " + txtUN4;
             fr.userid = userid;
             fr.Show();
             this.Close();
         }
 
         string UN, UN2;
-
+        // we assign username when we open this page
+        string usernameTemporary;
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            //here, we will use different username ckeck operation. As usual we pull all usernames in a list
             byte[] name3 = ASCIIEncoding.ASCII.GetBytes(txtUN.Text);
             string named3 = Convert.ToBase64String(name3);
 
@@ -49,6 +52,7 @@ namespace ProductChase
             }
             conn.conn().Close();
 
+            //then we look inside of that list if there is any same username in database but here is a little bit triky. what is i keep my username and just want to change other information. my username already recorded in database. so i have changed a little bit. now i am checking both is it in database and is it same which is the one when we brought back once open this page.
             foreach (var item in userNameCollection)
             {
                 if (named3 == item && txtUN.Text != usernameTemporary)
@@ -56,7 +60,7 @@ namespace ProductChase
                     sameUserNameReader++;
                 }
             }
-
+            //rest of them is same
             if (txtUN.Text == "" || txtUN2.Text == "" || txtUN3.Text == "" || txtUN4.Text == "")
             {
                 MessageBox.Show("Please provide all informations", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -96,18 +100,19 @@ namespace ProductChase
 
         }
 
-        string usernameTemporary;
-
+       
+        //pass protect cancel
         private void pictureBox1_MouseHover(object sender, EventArgs e)
         {
             txtUN2.UseSystemPasswordChar = false;
         }
-
+        //pass protect acivate
         private void pictureBox1_MouseLeave(object sender, EventArgs e)
         {
             txtUN2.UseSystemPasswordChar = true;
         }
 
+        //bring back all user infos
         private void frmPassAndUsers_Load(object sender, EventArgs e)
         {
             SqlCommand name = new SqlCommand("Select * from TBLUSERS where USERID=@p1", conn.conn());

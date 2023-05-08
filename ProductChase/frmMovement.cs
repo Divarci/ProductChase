@@ -55,7 +55,7 @@ namespace ProductChase
 
         private void frmMovement_Load(object sender, EventArgs e)
         {
-
+            // all comboboxes filled with needed infos
             SqlCommand cmd1 = new SqlCommand("Select PRODUCTID,PRODUCTNAME from TBLPRODUCTS", conn.conn());
             SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
             DataTable dt1 = new DataTable();
@@ -84,7 +84,7 @@ namespace ProductChase
             clean();
         }
 
-
+        //when we select a product, its price assigned here
         string productPrice;
         private void cmbProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -100,12 +100,17 @@ namespace ProductChase
 
         private void txtQuantity_TextChanged(object sender, EventArgs e)
         {
+
             int productStock = 0;
             int quantity2;
+
+            //checks is entered quantity is a number or else
+            //if it is number, makes txtquantity int and assign it to quantity2
             if (int.TryParse(txtQuantity.Text, out quantity2))
             {
                 quantity2 = Convert.ToInt16(txtQuantity.Text);
             }
+            //if it is not makes it 0
             else
             {
                 quantity2 = 0;
@@ -113,6 +118,7 @@ namespace ProductChase
                 txtQuantity.SelectAll();
             }
 
+            //makes a stok control
             SqlCommand cmd = new SqlCommand("Select productstock from TBLPRODUCTS where productid=@p1", conn.conn());
             cmd.Parameters.AddWithValue("@p1", cmbProduct.SelectedValue);
             SqlDataReader dr = cmd.ExecuteReader();
@@ -121,14 +127,18 @@ namespace ProductChase
                 productStock = Convert.ToInt16(dr[0].ToString());
             }
 
+            //if stock is 0 or needed quantity more than how many we have makes quantity 0
             if (productStock <= 0 || quantity2 > productStock)
             {
                 txtQuantity.Text = "0";
                 txtQuantity.SelectAll();
             }
+            //if it is not makes a calculation quantity x price and assign it needed form
             else
             {
+                //we already have quantity
                 decimal quantity;
+                //we already have price just will be assigned to a decimal
                 decimal productPriceDec;
                 if (decimal.TryParse(txtQuantity.Text, out quantity) && decimal.TryParse(productPrice, out productPriceDec))
                 {
@@ -139,7 +149,7 @@ namespace ProductChase
 
 
         }
-
+        //-----same stepss ----
         private void btnList_Click(object sender, EventArgs e)
         {
             listIt();
@@ -264,7 +274,11 @@ namespace ProductChase
                 }
             }
         }
+        //-----same stepss ----
 
+
+
+        // makes a filter according to dates
         private void dtpEnd_ValueChanged(object sender, EventArgs e)
         {
             SqlCommand cmd = new SqlCommand("MOVEMENT_SEARCH", conn.conn());
@@ -279,6 +293,7 @@ namespace ProductChase
             SettingDataGridView(dataGridView1);
         }
 
+        // makes a filter according to dates
 
         private void dtpStart_ValueChanged(object sender, EventArgs e)
         {
@@ -294,7 +309,7 @@ namespace ProductChase
             SettingDataGridView(dataGridView1);
         }
         string userNameAndSurname;
-
+        //same step with others
         private void recordInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (recordedUser == string.Empty || recordedUser == "" || recordedUser == null)

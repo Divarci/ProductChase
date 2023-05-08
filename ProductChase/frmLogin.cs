@@ -18,20 +18,25 @@ namespace ProductChase
             InitializeComponent();
         }
 
+
+        //sql connection class
         ConnectionToSql conn = new ConnectionToSql();
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            //username and pass cyrpted
             byte[] name = ASCIIEncoding.ASCII.GetBytes(txtName2.Text);
             string named = Convert.ToBase64String(name);
 
             byte[] name2 = ASCIIEncoding.ASCII.GetBytes(txtName3.Text);
             string named2 = Convert.ToBase64String(name2);
 
+            //username and pass control
             SqlCommand cmd = new SqlCommand("Select * from TBLUSERS where USERNAME=@p1 and PASS=@P2", conn.conn());
             cmd.Parameters.AddWithValue("@p1", named);
             cmd.Parameters.AddWithValue("@p2", named2);
             SqlDataReader dr = cmd.ExecuteReader();
+            //if its match
             if (dr.Read())
             {
                 named = dr[1].ToString();
@@ -42,6 +47,7 @@ namespace ProductChase
                 fr.Show();
                 this.Hide();
             }
+            //if its not match 
             else
             {
                 MessageBox.Show("Please provide valid information", "Id or Password Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -53,27 +59,29 @@ namespace ProductChase
 
         }
 
+        //pass protect cancel
         private void pictureBox1_MouseHover(object sender, EventArgs e)
         {
             txtName3.UseSystemPasswordChar = false;
         }
-
+        //pass protect activate
+        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+            txtName3.UseSystemPasswordChar = true;
+        }
+        //signup page
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             frmSignUp fr = new frmSignUp();
             fr.Show();
             this.Hide();
         }
-
+        //exit app
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
-        private void pictureBox1_MouseLeave(object sender, EventArgs e)
-        {
-            txtName3.UseSystemPasswordChar = true;
-        }
+      
 
         private void frmLogin_Load(object sender, EventArgs e)
         {

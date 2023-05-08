@@ -17,8 +17,10 @@ namespace ProductChase
         {
             InitializeComponent();
         }
-        ConnectionToSql conn = new ConnectionToSql();
 
+        //sql connection
+        ConnectionToSql conn = new ConnectionToSql();
+        //clean method
         void clean()
         {
             txtName.Clear();
@@ -26,7 +28,7 @@ namespace ProductChase
             txtName3.Clear();
             txtSurname.Clear();
         }
-
+        //exit signup
         private void btnExit_Click(object sender, EventArgs e)
         {
             frmLogin fr = new frmLogin();
@@ -34,9 +36,11 @@ namespace ProductChase
             this.Close();
 
         }
-
+        //save user
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //check is there any same username with yours.
+            //first step pull all usernames and assign them in a list
             byte[] name3 = ASCIIEncoding.ASCII.GetBytes(txtName2.Text);
             string named3 = Convert.ToBase64String(name3);
 
@@ -52,6 +56,7 @@ namespace ProductChase
             }
             conn.conn().Close();
 
+            //second if there is same one in database add +1 to sameUserNameReader. It means some one already used what you want
             foreach (var item in userNameCollection)
             {
                 if (named3 == item)
@@ -59,23 +64,27 @@ namespace ProductChase
                     sameUserNameReader++;
                 }
             }
-
+            //checks any empty imformations
             if (txtName.Text == "" || txtName2.Text == "" || txtName3.Text == "" || txtSurname.Text == "")
             {
                 MessageBox.Show("Please provide all informations", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            //checks any same username
             else if (sameUserNameReader > 0)
             {
                 MessageBox.Show("This username has already been taken bu another user.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            //save user
             else
             {
+                //cyrpted info
                 byte[] name = ASCIIEncoding.ASCII.GetBytes(txtName2.Text);
                 string named = Convert.ToBase64String(name);
 
                 byte[] name2 = ASCIIEncoding.ASCII.GetBytes(txtName3.Text);
                 string named2 = Convert.ToBase64String(name2);
 
+                //insert operation
                 SqlCommand cmd = new SqlCommand("Insert into TBLUSERS (USERNAME,PASS,NAME,SURNAME) values (@p1,@p2,@p3,@p4) ", conn.conn());
                 cmd.Parameters.AddWithValue("@p1", named);
                 cmd.Parameters.AddWithValue("@p2", named2);
@@ -91,20 +100,17 @@ namespace ProductChase
 
         }
 
+        //pass protec cancel
         private void pictureBox1_MouseHover(object sender, EventArgs e)
         {
             txtName3.UseSystemPasswordChar = false;
         }
-
+        //pass protect activate
         private void pictureBox1_MouseLeave(object sender, EventArgs e)
         {
             txtName3.UseSystemPasswordChar = true;
 
         }
 
-        private void frmSignUp_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

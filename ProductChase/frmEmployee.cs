@@ -18,10 +18,13 @@ namespace ProductChase
             InitializeComponent();
         }
         public string userid;
-
+        //sql connection
         ConnectionToSql conn = new ConnectionToSql();
+
+        //list method
         public void listIt()
         {
+            //active inactive check
             if (cbSee.Checked)
             {
                 SqlCommand cmd = new SqlCommand("LIST_EMOLOYEE", conn.conn());
@@ -44,7 +47,7 @@ namespace ProductChase
             }
             
         }
-
+        //clear method
         public void Clean()
         {
             txtId.Clear();
@@ -57,6 +60,7 @@ namespace ProductChase
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //same procedure with other save operation
             if (txtEmployeeName.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Please enter a Valid Emloyee Name", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -102,6 +106,7 @@ namespace ProductChase
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            //same operation with other update
             if (txtEmployeeName.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Please enter a Valid Emloyee Name", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -126,7 +131,7 @@ namespace ProductChase
                 
             }
         }
-
+        //same operation with others
         private void btnDelete_Click(object sender, EventArgs e)
         {
             List<string> employeeIdList = new List<string>();
@@ -169,12 +174,15 @@ namespace ProductChase
            
         }
 
+        //list
         private void btnList_Click(object sender, EventArgs e)
         {
             listIt();
             Clean();
         }
 
+
+        //same steps with others
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             txtId.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
@@ -188,6 +196,7 @@ namespace ProductChase
 
         string userNameAndSurname;
 
+        //same steps with others
         private void recordInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (recordedUser == string.Empty || recordedUser == "" || recordedUser == null)
@@ -208,6 +217,7 @@ namespace ProductChase
                 MessageBox.Show(employeeName + " :This employee had been recorded by " + userNameAndSurname, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+        //same steps with others
         string employeeName, recordedUser;
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {

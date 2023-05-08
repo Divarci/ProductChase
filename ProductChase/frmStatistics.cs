@@ -18,7 +18,11 @@ namespace ProductChase
         {
             InitializeComponent();
         }
+        //sql connection
         ConnectionToSql conn = new ConnectionToSql();
+
+        //Pull sql procedures for list operation. for query please see the sql script at github
+
         private void btnCritical_Click(object sender, EventArgs e)
         {
 
@@ -93,5 +97,7 @@ namespace ProductChase
             da.Fill(dt);
             dataGridView1.DataSource = dt;
         }
+
+     
     }
 }

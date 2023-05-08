@@ -19,7 +19,7 @@ namespace ProductChase
         {
             InitializeComponent();
         }
-
+        //same steps with others
         ConnectionToSql conn = new ConnectionToSql();
 
         public string userid;
@@ -270,6 +270,7 @@ namespace ProductChase
 
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            //here is little bit tricky. please read carefully
             string costPriceWithCurrency;
             string priceWithCurrency;
 
@@ -277,10 +278,10 @@ namespace ProductChase
             txtId.Text = dataGridView1.Rows[choosen].Cells[0].Value.ToString();
             txtProductName.Text = dataGridView1.Rows[choosen].Cells[1].Value.ToString();
             txtBrand.Text = dataGridView1.Rows[choosen].Cells[2].Value.ToString();
-
+            //when i double clicked price value comes with currencry, we are deleting this currency before assign to form
             costPriceWithCurrency = dataGridView1.Rows[choosen].Cells[4].Value.ToString();
             txtCost.Text = costPriceWithCurrency.Replace("£", "");
-
+            //when i double clicked price value comes with currencry, we are deleting this currency before assign to form
             priceWithCurrency = dataGridView1.Rows[choosen].Cells[5].Value.ToString();
             txtPrice.Text = priceWithCurrency.Replace("£", "");
 

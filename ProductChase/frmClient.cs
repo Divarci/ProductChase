@@ -17,8 +17,11 @@ namespace ProductChase
         {
             InitializeComponent();
         }
+        //sql connection
         ConnectionToSql conn = new ConnectionToSql();
         public string userid;
+
+        //datagrid settings method
         void SettingDataGridView(DataGridView dtv)
         {
             dtv.Columns[0].Width = 50;
@@ -32,8 +35,11 @@ namespace ProductChase
             dtv.Columns[8].Visible = false;
 
         }
+
+        //list
         public void listIt()
         {
+            //checks if there are active or inactive client
             if (cbSee.Checked == true)
             {
                 SqlCommand cmd = new SqlCommand("EXECUTE LISTCLIENT", conn.conn());
@@ -53,7 +59,7 @@ namespace ProductChase
                 SettingDataGridView(dataGridView1);
             }
         }
-
+        //celan method
         public void clean()
         {
             txtId.Clear();
@@ -65,6 +71,7 @@ namespace ProductChase
         }
         private void frmClient_Load(object sender, EventArgs e)
         {
+            //loads cities to combobox
             SqlCommand cmd = new SqlCommand("Select * from TBLCITIES", conn.conn());
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -78,6 +85,8 @@ namespace ProductChase
 
         private void cmbCity_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //checks if there are active or inactive client
+            //pull a list with a city filter
             if (cbSet.Checked == true)
             {
                 SqlCommand cmd = new SqlCommand("LISTCLIENTWITHFILTER", conn.conn());
@@ -105,15 +114,17 @@ namespace ProductChase
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //checks if there were empty forms or not
             if (txtClientName.Text.Trim().Length == 0 || txtClientSurname.Text.Trim().Length == 0 || txtClientMobile.Text.Trim().Length == 0 || txtClientEmail.Text.Trim().Length == 0 || cmbCity.Text == "")
             {
                 MessageBox.Show("Please enter Valid Informations", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-
+                //before save, id should be empy. this if block checks if it is empty or not (when double click table id will be assigned form.)
                 if (txtId.Text.Trim().Length == 0)
                 {
+                    //checks if there are any same client in database
                     List<string> tempList = new List<string>();
                     int temp = 0;
                     SqlCommand cmd1 = new SqlCommand("Select ClientName+' '+ClientSurname from TBLCLIENTS", conn.conn());
@@ -135,6 +146,7 @@ namespace ProductChase
                     {
                         MessageBox.Show("This client has already been ADDED. Please try to add different client", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
+                    //if it is not
                     else
                     {
                         SqlCommand cmd = new SqlCommand("insert into TBLCLIENTS (CLIENTNAME,CLIENTSURNAME,CLIENTCITY,CLIENTMOBILE,CLIENTEMAIL,USERID,INACTIVE) values (@p1,@p2,@p3,@p4,@p5,@P6,'0')", conn.conn());
@@ -153,6 +165,7 @@ namespace ProductChase
                         clean();
                     }
                 }
+                //if id form is not empty, checks that id if it was recorded before  
                 else
                 {
                     List<string> tempList = new List<string>();
@@ -175,6 +188,7 @@ namespace ProductChase
                     {
                         MessageBox.Show("The Client Id has been used for another client. Please clear the form and try to save a new one", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
+                    //if it is not
                     else
                     {
                         SqlCommand cmd = new SqlCommand("insert into TBLCLIENTS (CLIENTNAME,CLIENTSURNAME,CLIENTCITY,CLIENTMOBILE,CLIENTEMAIL,USERID) values (@p1,@p2,@p3,@p4,@p5,@P6)", conn.conn());
@@ -196,7 +210,7 @@ namespace ProductChase
 
             }
         }
-
+        //assign clicked infos to the forms
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             int choosen;
@@ -214,7 +228,7 @@ namespace ProductChase
             else { cbSet.Checked = false; }
             cmbCity.Text = dataGridView1.Rows[choosen].Cells[3].Value.ToString();
         }
-
+        //list
         private void btnList_Click(object sender, EventArgs e)
         {
             listIt();
@@ -223,10 +237,12 @@ namespace ProductChase
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            //checks if there were empty forms or not
             if (txtClientName.Text.Trim().Length == 0 || txtClientSurname.Text.Trim().Length == 0 || txtClientMobile.Text.Trim().Length == 0 || txtClientEmail.Text.Trim().Length == 0 || cmbCity.Text == "")
             {
                 MessageBox.Show("Please enter Valid Informations", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            //if it is not
             else
             {
                 DialogResult result = MessageBox.Show("Are you sure to UPDATE client Id: " + txtId.Text, "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
@@ -253,6 +269,7 @@ namespace ProductChase
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            //check if this client conected another data as it wont be able to delete
             List<string> clientIdList = new List<string>();
             SqlCommand cmd2 = new SqlCommand("select CLIENT from TBLMOVEMENT where CLIENT=@p1", conn.conn());
             cmd2.Parameters.AddWithValue("@p1", txtId.Text);
@@ -266,12 +283,15 @@ namespace ProductChase
             {
                 MessageBox.Show("You can not delete this client as it is connected other data. Try to use INACTIVE product", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            //if it is not
             else
             {
+                //checks is there any valid id
                 if (txtId.Text.Trim().Length == 0)
                 {
                     MessageBox.Show("Please enter a Valid Client Id by selection from table", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+                //if it is
                 else
                 {
                     DialogResult result = MessageBox.Show("Are you sure to DELETE client Id: " + txtId.Text, "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
@@ -296,6 +316,7 @@ namespace ProductChase
         string userNameAndSurname;
         private void recordInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //same steps with the others ( find recorder user )
             if (recordedUser == string.Empty || recordedUser == "" || recordedUser == null)
             {
                 MessageBox.Show("Choose a Client for information", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -314,6 +335,7 @@ namespace ProductChase
                 MessageBox.Show(clientNameAndSurname + " : This client had been recorded by " + userNameAndSurname, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+        //same steps with the others ( find recorder user )
         string clientNameAndSurname, recordedUser;
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {

@@ -12,7 +12,7 @@ namespace ProductChase
 
         public SqlConnection conn()
         {
-            SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-56RDTT9\SQLDB;Initial Catalog=ProductChase;Integrated Security=True");
+            SqlConnection connection = new SqlConnection(@"Data Source=HASAN\SQLEXPRESS;Initial Catalog=ProductChase;Integrated Security=True");
             connection.Open();
             return connection;
         }

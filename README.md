@@ -1,4 +1,4 @@
-# ProductChase
+# Product-Chase
 Product Sell - Cash Movement Project
 You can find a lot of things in this project. 
 I have used ADO.NET here and its is my third sql based commercial study project and it is working smooth.
